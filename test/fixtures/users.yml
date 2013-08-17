@@ -1,0 +1,41 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  id: 1
+  first_name: Michael
+  last_name: Orsted
+  nick_name: Mike
+  login_name: orstedma
+  start_date: "2012-02-04"
+  end_date:
+  notes: "This user lives in Chicago."
+
+two:
+  id: 2
+  first_name: Frederick
+  last_name: Free-Loader
+  nick_name: Frederick
+  login_name: freelofw
+  start_date: "2012-03-04"
+  end_date:
+  notes: "This user is completely useless"
+
+three:
+  id: 3
+  first_name: Michael
+  last_name: Winstead
+  nick_name: Mike
+  login_name: winstem
+  start_date: "2012-02-04"
+  end_date: "2013-08-12"
+  notes: "This user lives in New York. This user is disabled in the system."
+
+four:
+  id: 4
+  first_name: Allison
+  last_name: Wilson
+  nick_name: Alli
+  login_name: wilsona
+  start_date: "2012-03-04"
+  end_date:
+  notes: "Electrical engineer."

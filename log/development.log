@@ -1,0 +1,66 @@
+  [1m[36m (18.5ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" character varying(255) NOT NULL) [0m
+  [1m[35m (53.5ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateUsers (20130811193133)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (72.6ms)[0m  [1mCREATE TABLE "users" ("id" serial primary key, "first_name" character varying(255), "last_name_string" character varying(255), "nick_name" character varying(255), "login_name" character varying(255), "notes" text, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (1.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20130811193133"]]
+  [1m[36m (12.2ms)[0m  [1mCOMMIT[0m
+Migrating to AddStartDateToUser (20130811195557)
+  [1m[35m (0.4ms)[0m  BEGIN
+  [1m[36m (0.7ms)[0m  [1mALTER TABLE "users" ADD COLUMN "start_date" date[0m
+  [1m[35mSQL (0.8ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20130811195557"]]
+  [1m[36m (9.5ms)[0m  [1mCOMMIT[0m
+Migrating to AddEndDateToUser (20130811195620)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.5ms)[0m  [1mALTER TABLE "users" ADD COLUMN "end_date" date[0m
+  [1m[35mSQL (0.7ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20130811195620"]]
+  [1m[36m (9.9ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.4ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to RenameUserColumnLastNameStringToLastNameOnUsers (20130811212425)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.6ms)[0m  [1mALTER TABLE "users" RENAME COLUMN "last_name_string" TO "last_name"[0m
+  [1m[35mSQL (1.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20130811212425"]]
+  [1m[36m (20.9ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.4ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (18.3ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" character varying(255) NOT NULL) [0m
+  [1m[35m (59.1ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateUsers (20130811193133)
+  [1m[35m (0.5ms)[0m  BEGIN
+  [1m[36m (79.9ms)[0m  [1mCREATE TABLE "users" ("id" serial primary key, "first_name" character varying(255), "last_name_string" character varying(255), "nick_name" character varying(255), "login_name" character varying(255), "notes" text, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (1.9ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20130811193133"]]
+  [1m[36m (10.5ms)[0m  [1mCOMMIT[0m
+Migrating to AddStartDateToUser (20130811195557)
+  [1m[35m (0.4ms)[0m  BEGIN
+  [1m[36m (1.3ms)[0m  [1mALTER TABLE "users" ADD COLUMN "start_date" date[0m
+  [1m[35mSQL (1.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20130811195557"]]
+  [1m[36m (4.3ms)[0m  [1mCOMMIT[0m
+Migrating to AddEndDateToUser (20130811195620)
+  [1m[35m (0.5ms)[0m  BEGIN
+  [1m[36m (0.9ms)[0m  [1mALTER TABLE "users" ADD COLUMN "end_date" date[0m
+  [1m[35mSQL (1.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20130811195620"]]
+  [1m[36m (4.9ms)[0m  [1mCOMMIT[0m
+Migrating to RenameUserColumnLastNameStringToLastNameOnUsers (20130811212425)
+  [1m[35m (0.5ms)[0m  BEGIN
+  [1m[36m (0.9ms)[0m  [1mALTER TABLE "users" RENAME COLUMN "last_name_string" TO "last_name"[0m
+  [1m[35mSQL (1.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20130811212425"]]
+  [1m[36m (9.9ms)[0m  [1mCOMMIT[0m
+Migrating to CreatePhones (20130816142047)
+  [1m[35m (0.5ms)[0m  BEGIN
+  [1m[36m (84.5ms)[0m  [1mCREATE TABLE "phones" ("id" serial primary key, "number" character varying(255), "tag" character varying(255), "user_id" integer, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35m (37.7ms)[0m  CREATE INDEX "index_phones_on_user_id" ON "phones" ("user_id")
+  [1m[36m (36.0ms)[0m  [1mCREATE INDEX "index_phones_on_number" ON "phones" ("number")[0m
+  [1m[35mSQL (0.8ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20130816142047"]]
+  [1m[36m (13.1ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.8ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mActiveRecord::SchemaMigration Load (1.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreatePhones (20130816142047)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (327.5ms)[0m  [1mCREATE TABLE "phones" ("id" serial primary key, "number" character varying(255), "tag" character varying(255), "user_id" integer, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35m (29.8ms)[0m  CREATE INDEX "index_phones_on_user_id" ON "phones" ("user_id")
+  [1m[36m (30.4ms)[0m  [1mCREATE INDEX "index_phones_on_number" ON "phones" ("number")[0m
+  [1m[35mSQL (15.5ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20130816142047"]]
+  [1m[36m (16.2ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.3ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
