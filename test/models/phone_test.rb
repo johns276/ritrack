@@ -88,6 +88,12 @@ class PhoneTest < ActiveSupport::TestCase
       assert @phone.errors[:number].any? == false
     end
 
+    should 'require a user_id' do
+      @phone.user_id = nil
+      @phone.valid?
+      assert @phone.errors[:user_id].any? == true
+    end
+
   end # a given phone
 
   context 'A new phone' do
@@ -151,6 +157,17 @@ class PhoneTest < ActiveSupport::TestCase
       @phone.valid?
       assert @phone.errors[:number].any? == true
       assert_equal @phone.errors[:number].join(';'), "doesn't look like a valid North American or International phone number"
+    end
+
+    should 'not be savable without being fully valid' do
+      assert @phone.valid? == false
+      @phone.number = '345-6789'
+      @phone.tag = 'Home'
+      @phone.user_id = 100
+      assert @phone.new_record? == true
+      assert @phone.valid? == true
+      assert @phone.save == true
+      assert @phone.new_record? == false
     end
 
   end # a new phone

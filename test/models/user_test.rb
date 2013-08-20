@@ -149,6 +149,17 @@ class UserTest < ActiveSupport::TestCase
       end
     end
 
+    should 'allow adding a phone' do
+      phone = Phone.new()
+      phone.number = '234-5678'
+      phone.tag = 'Home'
+      assert phone.new_record? == true
+      @user.phones << phone
+      assert @user.save == true
+      assert @user.phones.size > 2
+      assert phone.new_record? == false
+    end
+
   end #A given user
 
 end
