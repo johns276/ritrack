@@ -57,6 +57,25 @@ class PhoneTest < ActiveSupport::TestCase
       assert_equal @phone.errors[:number].join(';'), "doesn't look like a valid phone number"
     end
 
+    should 'optionally be a valid North American number with 7 digits.' do
+      @phone.number = '456-7890'
+      @phone.valid?
+      assert @phone.errors[:number].any? == false
+      @phone.number = '456 7890'
+      @phone.valid?
+      assert @phone.errors[:number].any? == false
+      @phone.number = '4567890'
+      @phone.valid?
+      assert @phone.errors[:number].any? == false
+    end
+
+    should 'not be valid with a poorly formatted 7 digit North American number' do
+      @phone.number = '456-78091'
+      @phone.valid?
+      assert @phone.errors[:number].any? == true
+      assert_equal @phone.errors[:number].join(';'), "doesn't look like a valid phone number"
+    end
+
   end # a given phone
 
 end

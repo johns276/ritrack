@@ -3,7 +3,7 @@
 	[
 		{
 			"follow_symlinks": true,
-			"path": "ritrack"
+			"path": "/home/johns276/projects/rails4/ritrack"
 		}
 	]
 }
