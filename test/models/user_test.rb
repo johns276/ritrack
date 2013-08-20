@@ -137,6 +137,18 @@ class UserTest < ActiveSupport::TestCase
       assert_equal @user.errors[:end_date].join(';'), "cannot be less than the start date"
     end
 
+    should 'allow retrieval of user phone numbers' do
+      phones = @user.phones
+      assert phones.size != 0
+    end
+
+    should 'retrieve only valid phones' do
+      phones = @user.phones
+      phones.each do |phone|
+        assert phone.valid? == true
+      end
+    end
+
   end #A given user
 
 end
