@@ -20,6 +20,7 @@ class UserTest < ActiveSupport::TestCase
   should validate_presence_of :start_date
 
   should have_many(:phones)
+  should have_many(:locations)
 
   context 'A given user' do
 

@@ -34,6 +34,7 @@ class User < ActiveRecord::Base
   validate  :start_date_must_precede_end_date
 
   has_many :phones
+  has_many :locations
 
 
   :private
