@@ -17,5 +17,9 @@
 #
 
 class Location < ActiveRecord::Base
+
+  validates :address1, presence: true, if: "company.nil? == false"
+
   belongs_to :user
+
 end
