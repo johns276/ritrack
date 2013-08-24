@@ -18,8 +18,29 @@
 
 class Location < ActiveRecord::Base
 
-  validates :address1, presence: true, if: "company.nil? == false"
+  validate :company_requires_address
+  validate :address2_requires_address1
 
   belongs_to :user
 
+  private
+
+    def company_requires_address
+
+      if company != nil
+        errors.add(:address1, "if company is specified a street address is required") if address1 == nil
+        errors.add(:city, "if company is specified a city is required") if city.nil == nil
+        errors.add(:state, "if company is specified a state is required") if state == nil
+        errors.add(:zip, "if company is specified a zip code is required") if zip == nil
+      end
+
+    end
+
+    def address2_requires_address1
+
+      if address2 != nil
+        errors.add(:address1, "if second line of address is specified a first line is required") if address1 == nil
+      end
+
+    end
 end
