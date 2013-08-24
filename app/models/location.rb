@@ -18,6 +18,8 @@
 
 class Location < ActiveRecord::Base
 
+  validates :company, format: {with: /\A(?:[A-Z][a-z]+)(?: {1}[A-Z][a-z]+)*\z/}
+  validates :zip, format: {with: /\A\d{5}$|^\d{5}-\d{4}\z/}
   validate :company_requires_address
   validate :address2_requires_address1
 
@@ -27,7 +29,7 @@ class Location < ActiveRecord::Base
 
     def company_requires_address
 
-      if self.company != nil
+      if company != nil
         errors.add(:address1, "if company is specified a street address is required") if address1 == nil
         errors.add(:city, "if company is specified a city is required") if city == nil
         errors.add(:state, "if company is specified a state is required") if state == nil
