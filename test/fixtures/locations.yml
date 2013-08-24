@@ -24,10 +24,10 @@ one:
   organization: 'News Desk'
   address1: '1444 First Street'
   address2: 'Floor 15'
-  city: Washington
-  state: DC
+  city: 'Washington'
+  state: 'DC'
   zip: '10270'
-  country: US
+  country: 'US'
   user_id: 1
 
 two:
@@ -35,8 +35,8 @@ two:
   organization: 'Scotland Desk'
   address1: '63 Park Avenue'
   address2: 'Suite 102'
-  city: Chicago
-  state: IL
+  city: 'Chicago'
+  state: 'IL'
   zip: '69755'
-  country: US
+  country: 'US'
   user_id: 1

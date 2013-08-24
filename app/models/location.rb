@@ -27,9 +27,9 @@ class Location < ActiveRecord::Base
 
     def company_requires_address
 
-      if company != nil
+      if self.company != nil
         errors.add(:address1, "if company is specified a street address is required") if address1 == nil
-        errors.add(:city, "if company is specified a city is required") if city.nil == nil
+        errors.add(:city, "if company is specified a city is required") if city == nil
         errors.add(:state, "if company is specified a state is required") if state == nil
         errors.add(:zip, "if company is specified a zip code is required") if zip == nil
       end
