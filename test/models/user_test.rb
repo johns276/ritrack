@@ -12,6 +12,8 @@ class UserTest < ActiveSupport::TestCase
   should ensure_length_of(:last_name).is_at_least(2)
   should ensure_length_of(:last_name).is_at_most(254)
 
+  should ensure_length_of(:nick_name).is_at_most(254)
+
   should validate_presence_of :login_name
   should validate_uniqueness_of :login_name
   should ensure_length_of(:login_name).is_at_least(6)
