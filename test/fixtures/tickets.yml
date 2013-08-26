@@ -19,22 +19,22 @@
 
 one:
   id: 1
-  subject: MyString
-  status: MyString
+  subject: "Jobs filling hard disks completely"
+  status: New
   priority: 1
   start_date: 2013-08-26 13:22:56
-  end_date: 2013-08-26 13:22:56
+  end_date:
   due_date: 2013-08-26 13:22:56
   user_id: 1
   ticket_queue_id: 1
 
 two:
   id: 2
-  subject: MyString
-  status: MyString
+  subject: "Hard drive failing. Replacement requested."
+  status: Opened
   priority: 1
   start_date: 2013-08-26 13:22:56
-  end_date: 2013-08-26 13:22:56
-  due_date: 2013-08-26 13:22:56
+  end_date:
+  due_date: 2013-09-26 13:22:56
   user_id: 1
   ticket_queue_id: 1

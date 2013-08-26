@@ -16,4 +16,12 @@
 #
 
 class Ticket < ActiveRecord::Base
+
+  validates :subject, presence: true
+  validates :status, presence: true, inclusion: { in: %w(New Opened Ignored Resolved Held), message: "%{value} is not a valid size" }
+  validates :priority, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 1, less_than_or_equal_to: 25 }
+
+  belongs_to :ticket_queue
+  belongs_to :user
+
 end

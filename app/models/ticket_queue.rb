@@ -23,6 +23,11 @@ class TicketQueue < ActiveRecord::Base
   validates :default_due_in, presence: true
   validates :start_date, presence: true
 
+  validate  :no_end_date_without_start_date
+  validate  :start_date_must_precede_end_date
+
+  has_many :tickets
+
   private
 
     def no_end_date_without_start_date
