@@ -1,4 +1,6 @@
 Ritrack::Application.routes.draw do
+  resources :ticket_queues
+
   resources :users
 
   # The priority is based upon order of creation: first created -> highest priority.

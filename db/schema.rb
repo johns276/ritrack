@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130825220004) do
+ActiveRecord::Schema.define(version: 20130826183525) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,44 @@ ActiveRecord::Schema.define(version: 20130825220004) do
 
   add_index "phones", ["number"], name: "index_phones_on_number", using: :btree
   add_index "phones", ["user_id"], name: "index_phones_on_user_id", using: :btree
+
+  create_table "ticket_queues", force: true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.string   "url"
+    t.integer  "priority"
+    t.integer  "default_due_in"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "ticket_respones", force: true do |t|
+    t.text     "body"
+    t.datetime "response_sent"
+    t.integer  "ticket_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "ticket_respones", ["ticket_id"], name: "index_ticket_respones_on_ticket_id", using: :btree
+
+  create_table "tickets", force: true do |t|
+    t.string   "subject"
+    t.string   "status"
+    t.integer  "priority"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.datetime "due_date"
+    t.integer  "user_id"
+    t.integer  "ticket_queue_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "tickets", ["ticket_queue_id"], name: "index_tickets_on_ticket_queue_id", using: :btree
+  add_index "tickets", ["user_id"], name: "index_tickets_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "first_name"

@@ -39,6 +39,7 @@ Thumbs.db
 # RAILS files #
 ###############
 log/*
+log/
 *.rbc
 *.sassc
 .sass-cache

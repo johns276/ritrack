@@ -1,0 +1,39 @@
+<h1>Listing ticket_queues</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Url</th>
+      <th>Priority</th>
+      <th>Default due in</th>
+      <th>Start date</th>
+      <th>End date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @ticket_queues.each do |ticket_queue| %>
+      <tr>
+        <td><%= ticket_queue.name %></td>
+        <td><%= ticket_queue.description %></td>
+        <td><%= ticket_queue.url %></td>
+        <td><%= ticket_queue.priority %></td>
+        <td><%= ticket_queue.default_due_in %></td>
+        <td><%= ticket_queue.start_date %></td>
+        <td><%= ticket_queue.end_date %></td>
+        <td><%= link_to 'Show', ticket_queue %></td>
+        <td><%= link_to 'Edit', edit_ticket_queue_path(ticket_queue) %></td>
+        <td><%= link_to 'Destroy', ticket_queue, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Ticket queue', new_ticket_queue_path %>

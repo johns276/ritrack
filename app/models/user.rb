@@ -2,16 +2,19 @@
 #
 # Table name: users
 #
-#  id         :integer          not null, primary key
-#  first_name :string(255)
-#  last_name  :string(255)
-#  nick_name  :string(255)
-#  login_name :string(255)
-#  notes      :text
-#  created_at :datetime
-#  updated_at :datetime
-#  start_date :date
-#  end_date   :date
+#  id            :integer          not null, primary key
+#  first_name    :string(255)
+#  last_name     :string(255)
+#  nick_name     :string(255)
+#  login_name    :string(255)
+#  notes         :text
+#  created_at    :datetime
+#  updated_at    :datetime
+#  start_date    :date
+#  end_date      :date
+#  is_admin      :boolean
+#  can_login     :boolean
+#  user_by_email :boolean
 #
 
 class User < ActiveRecord::Base
@@ -37,9 +40,10 @@ class User < ActiveRecord::Base
 
   has_many :phones
   has_many :locations
+  has_many :tickets
 
 
-  :private
+  private
 
   def no_end_date_without_start_date
     if end_date !=nil && start_date == nil

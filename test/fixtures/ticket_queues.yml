@@ -1,0 +1,37 @@
+# == Schema Information
+#
+# Table name: ticket_queues
+#
+#  id             :integer          not null, primary key
+#  name           :string(255)
+#  description    :string(255)
+#  url            :string(255)
+#  priority       :integer
+#  default_due_in :integer
+#  start_date     :date
+#  end_date       :date
+#  created_at     :datetime
+#  updated_at     :datetime
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  id: 1
+  name: Queue1
+  description: 'A ticket queue'
+  url: mydomain.com
+  priority: 1
+  default_due_in: 1
+  start_date: 2013-08-26
+  end_date:
+
+two:
+  id: 2
+  name: Queue2
+  description: 'A ticket queue'
+  url: mydomain.com
+  priority: 1
+  default_due_in: 1
+  start_date: 2013-08-26
+  end_date:

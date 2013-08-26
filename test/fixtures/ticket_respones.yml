@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  body: MyText
+  response_sent: 2013-08-26 13:35:25
+  ticket_id: 
+
+two:
+  body: MyText
+  response_sent: 2013-08-26 13:35:25
+  ticket_id: 

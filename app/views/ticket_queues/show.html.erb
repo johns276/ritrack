@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @ticket_queue.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @ticket_queue.description %>
+</p>
+
+<p>
+  <strong>Url:</strong>
+  <%= @ticket_queue.url %>
+</p>
+
+<p>
+  <strong>Priority:</strong>
+  <%= @ticket_queue.priority %>
+</p>
+
+<p>
+  <strong>Default due in:</strong>
+  <%= @ticket_queue.default_due_in %>
+</p>
+
+<p>
+  <strong>Start date:</strong>
+  <%= @ticket_queue.start_date %>
+</p>
+
+<p>
+  <strong>End date:</strong>
+  <%= @ticket_queue.end_date %>
+</p>
+
+<%= link_to 'Edit', edit_ticket_queue_path(@ticket_queue) %> |
+<%= link_to 'Back', ticket_queues_path %>

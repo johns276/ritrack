@@ -1,0 +1,40 @@
+# == Schema Information
+#
+# Table name: tickets
+#
+#  id              :integer          not null, primary key
+#  subject         :string(255)
+#  status          :string(255)
+#  priority        :integer
+#  start_date      :datetime
+#  end_date        :datetime
+#  due_date        :datetime
+#  user_id         :integer
+#  ticket_queue_id :integer
+#  created_at      :datetime
+#  updated_at      :datetime
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  id: 1
+  subject: MyString
+  status: MyString
+  priority: 1
+  start_date: 2013-08-26 13:22:56
+  end_date: 2013-08-26 13:22:56
+  due_date: 2013-08-26 13:22:56
+  user_id: 1
+  ticket_queue_id: 1
+
+two:
+  id: 2
+  subject: MyString
+  status: MyString
+  priority: 1
+  start_date: 2013-08-26 13:22:56
+  end_date: 2013-08-26 13:22:56
+  due_date: 2013-08-26 13:22:56
+  user_id: 1
+  ticket_queue_id: 1
