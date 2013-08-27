@@ -13,6 +13,7 @@
 #  ticket_queue_id :integer
 #  created_at      :datetime
 #  updated_at      :datetime
+#  requestor_id    :integer
 #
 
 class Ticket < ActiveRecord::Base
@@ -23,5 +24,6 @@ class Ticket < ActiveRecord::Base
 
   belongs_to :ticket_queue
   belongs_to :user
+  belongs_to :requestor, class_name: "User", foreign_key: "requestor_id"
 
 end

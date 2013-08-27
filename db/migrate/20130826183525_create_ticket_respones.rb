@@ -1,6 +1,6 @@
-class CreateTicketRespones < ActiveRecord::Migration
+class CreateTicketResponses < ActiveRecord::Migration
   def change
-    create_table :ticket_respones do |t|
+    create_table :ticket_responses do |t|
       t.text :body
       t.datetime :response_sent
       t.references :ticket, index: true

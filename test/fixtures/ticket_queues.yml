@@ -19,7 +19,7 @@
 one:
   id: 1
   name: Queue1
-  description: 'A ticket queue'
+  description: 'Ticket queue 1'
   url: mydomain.com
   priority: 1
   default_due_in: 1
@@ -29,7 +29,7 @@ one:
 two:
   id: 2
   name: Queue2
-  description: 'A ticket queue'
+  description: 'Ticket queue 2'
   url: mydomain.com
   priority: 1
   default_due_in: 1

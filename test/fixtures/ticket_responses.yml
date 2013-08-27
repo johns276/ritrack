@@ -1,0 +1,25 @@
+# == Schema Information
+#
+# Table name: ticket_responses
+#
+#  id            :integer          not null, primary key
+#  body          :text
+#  response_sent :datetime
+#  ticket_id     :integer
+#  created_at    :datetime
+#  updated_at    :datetime
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  id: 1
+  body: "This is my first response to filling hard drives"
+  response_sent: 2013-08-26 13:35:25
+  ticket_id: 1
+
+two:
+  id: 2
+  body: MyText
+  response_sent: 2013-08-26 13:35:25
+  ticket_id: 1

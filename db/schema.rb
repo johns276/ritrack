@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130826183525) do
+ActiveRecord::Schema.define(version: 20130827150753) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(version: 20130826183525) do
     t.datetime "updated_at"
   end
 
-  create_table "ticket_respones", force: true do |t|
+  create_table "ticket_responses", force: true do |t|
     t.text     "body"
     t.datetime "response_sent"
     t.integer  "ticket_id"
@@ -63,7 +63,7 @@ ActiveRecord::Schema.define(version: 20130826183525) do
     t.datetime "updated_at"
   end
 
-  add_index "ticket_respones", ["ticket_id"], name: "index_ticket_respones_on_ticket_id", using: :btree
+  add_index "ticket_responses", ["ticket_id"], name: "index_ticket_responses_on_ticket_id", using: :btree
 
   create_table "tickets", force: true do |t|
     t.string   "subject"
@@ -76,8 +76,10 @@ ActiveRecord::Schema.define(version: 20130826183525) do
     t.integer  "ticket_queue_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "requestor_id"
   end
 
+  add_index "tickets", ["requestor_id"], name: "index_tickets_on_requestor_id", using: :btree
   add_index "tickets", ["ticket_queue_id"], name: "index_tickets_on_ticket_queue_id", using: :btree
   add_index "tickets", ["user_id"], name: "index_tickets_on_user_id", using: :btree
 
