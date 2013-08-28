@@ -12,6 +12,8 @@ class TicketTest < ActiveSupport::TestCase
   should_not allow_value(26).for(:priority)
   should_not allow_value(1.5).for(:priority)
 
+  should validate_presence_of(:start_date)
+
   should belong_to(:ticket_queue)
   should belong_to(:user)
 

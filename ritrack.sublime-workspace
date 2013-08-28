@@ -12,26 +12,18 @@
 	"buffers":
 	[
 		{
-			"file": "ritrack/app/models/user.rb",
+			"file": "app/models/ticket.rb",
 			"settings":
 			{
-				"buffer_size": 889,
+				"buffer_size": 951,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "ritrack/app/controllers/users_controller.rb",
+			"file": "test/models/ticket_test.rb",
 			"settings":
 			{
-				"buffer_size": 1787,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "ritrack/test/models/user_test.rb",
-			"settings":
-			{
-				"buffer_size": 1361,
+				"buffer_size": 515,
 				"line_ending": "Unix"
 			}
 		}
@@ -63,8 +55,18 @@
 	},
 	"file_history":
 	[
-		"/home/johns276/projects/ritrack/test/fixtures/users.yml",
+		"/home/johns276/projects/ritrack/ritrack.sublime-project",
+		"/home/johns276/projects/ritrack/test/models/user_test.rb",
+		"/home/johns276/projects/ritrack/app/models/user.rb",
+		"/home/johns276/projects/ritrack/test/models/location_test.rb",
+		"/home/johns276/projects/ritrack/app/models/location.rb",
+		"/home/johns276/projects/ritrack/app/models/phone.rb",
+		"/home/johns276/projects/ritrack/test/models/phone_test.rb",
+		"/home/johns276/projects/ritrack/test/fixtures/locations.yml",
 		"/home/johns276/Documents/godaddy.txt",
+		"/home/johns276/projects/ritrack/ritrack/test/models/user_test.rb",
+		"/home/johns276/projects/ritrack/ritrack/app/models/user.rb",
+		"/home/johns276/projects/ritrack/test/fixtures/users.yml",
 		"/home/johns276/projects/ritrack/db/migrate/20130811212425_rename_user_column_last_name_string_to_last_name_on_users.rb",
 		"/home/johns276/projects/ritrack/app/controllers/users_controller.rb",
 		"/home/johns276/projects/ritrack/test/test_helper.rb",
@@ -113,24 +115,24 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 1,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "ritrack/app/models/user.rb",
+					"file": "app/models/ticket.rb",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 889,
+						"buffer_size": 951,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								867,
-								867
+								899,
+								899
 							]
 						],
 						"settings":
@@ -145,19 +147,19 @@
 				},
 				{
 					"buffer": 1,
-					"file": "ritrack/app/controllers/users_controller.rb",
-					"semi_transient": true,
+					"file": "test/models/ticket_test.rb",
+					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1787,
+						"buffer_size": 515,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								449,
+								449
 							]
 						],
 						"settings":
@@ -165,33 +167,6 @@
 							"syntax": "Packages/Ruby/Ruby.tmLanguage",
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 864.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "ritrack/test/models/user_test.rb",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1361,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								745,
-								745
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Ruby/Ruby.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -249,11 +224,15 @@
 	},
 	"select_project":
 	{
-		"height": 0.0,
+		"height": 500.0,
 		"selected_items":
 		[
+			[
+				"",
+				"~/projects/ritrack/ritrack.sublime-project"
+			]
 		],
-		"width": 0.0
+		"width": 380.0
 	},
 	"select_symbol":
 	{

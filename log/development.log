@@ -64,3 +64,38 @@ Migrating to CreatePhones (20130816142047)
   [1m[35mSQL (15.5ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20130816142047"]]
   [1m[36m (16.2ms)[0m  [1mCOMMIT[0m
   [1m[35mActiveRecord::SchemaMigration Load (0.3ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mActiveRecord::SchemaMigration Load (13.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateTicketQueues (20130826154055)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (309.7ms)[0m  [1mCREATE TABLE "ticket_queues" ("id" serial primary key, "name" character varying(255), "description" character varying(255), "url" character varying(255), "priority" integer, "default_due_in" integer, "start_date" date, "end_date" date, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (15.8ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20130826154055"]]
+  [1m[36m (25.3ms)[0m  [1mCOMMIT[0m
+Migrating to CreateTickets (20130826182256)
+  [1m[35m (0.4ms)[0m  BEGIN
+  [1m[36m (65.9ms)[0m  [1mCREATE TABLE "tickets" ("id" serial primary key, "subject" character varying(255), "status" character varying(255), "priority" integer, "start_date" timestamp, "end_date" timestamp, "due_date" timestamp, "user_id" integer, "ticket_queue_id" integer, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35m (30.9ms)[0m  CREATE INDEX "index_tickets_on_user_id" ON "tickets" ("user_id")
+  [1m[36m (30.0ms)[0m  [1mCREATE INDEX "index_tickets_on_ticket_queue_id" ON "tickets" ("ticket_queue_id")[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20130826182256"]]
+  [1m[36m (18.1ms)[0m  [1mCOMMIT[0m
+Migrating to CreateTicketRespones (20130826183525)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (67.6ms)[0m  [1mCREATE TABLE "ticket_respones" ("id" serial primary key, "body" text, "response_sent" timestamp, "ticket_id" integer, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35m (30.8ms)[0m  CREATE INDEX "index_ticket_respones_on_ticket_id" ON "ticket_respones" ("ticket_id")
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20130826183525"]]
+  [1m[35m (17.1ms)[0m  COMMIT
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to RenameTicketResponeToTicketResponse (20130827135409)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (1.0ms)[0m  [1mALTER TABLE "ticket_respones" RENAME TO "ticket_responses"[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "ticket_respones_id_seq" RENAME TO "ticket_responses_id_seq"
+  [1m[36m (0.4ms)[0m  [1mALTER INDEX "index_ticket_respones_on_ticket_id" RENAME TO "index_ticket_responses_on_ticket_id"[0m
+  [1m[35mSQL (1.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20130827135409"]]
+  [1m[36m (5.5ms)[0m  [1mCOMMIT[0m
+Migrating to AddRequestorIdToTickets (20130827150753)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (0.9ms)[0m  [1mALTER TABLE "tickets" ADD COLUMN "requestor_id" integer[0m
+  [1m[35m (46.8ms)[0m  CREATE INDEX "index_tickets_on_requestor_id" ON "tickets" ("requestor_id")
+  [1m[36mSQL (0.7ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20130827150753"]]
+  [1m[35m (17.2ms)[0m  COMMIT
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
