@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"be",
+				"belongs_to"
+			],
+			[
 				"end",
 				"end_date"
 			]
@@ -11,22 +15,6 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "app/models/ticket.rb",
-			"settings":
-			{
-				"buffer_size": 951,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "test/models/ticket_test.rb",
-			"settings":
-			{
-				"buffer_size": 515,
-				"line_ending": "Unix"
-			}
-		}
 	],
 	"build_system": "",
 	"command_palette":
@@ -55,18 +43,32 @@
 	},
 	"file_history":
 	[
-		"/home/johns276/projects/ritrack/ritrack.sublime-project",
-		"/home/johns276/projects/ritrack/test/models/user_test.rb",
-		"/home/johns276/projects/ritrack/app/models/user.rb",
-		"/home/johns276/projects/ritrack/test/models/location_test.rb",
-		"/home/johns276/projects/ritrack/app/models/location.rb",
-		"/home/johns276/projects/ritrack/app/models/phone.rb",
-		"/home/johns276/projects/ritrack/test/models/phone_test.rb",
-		"/home/johns276/projects/ritrack/test/fixtures/locations.yml",
-		"/home/johns276/Documents/godaddy.txt",
-		"/home/johns276/projects/ritrack/ritrack/test/models/user_test.rb",
-		"/home/johns276/projects/ritrack/ritrack/app/models/user.rb",
+		"/home/johns276/projects/rails4/ritrack/app/models/ticket.rb",
+		"/home/johns276/projects/rails4/ritrack/test/fixtures/ticket_responses.yml",
+		"/home/johns276/projects/rails4/ritrack/test/fixtures/tickets.yml",
+		"/home/johns276/projects/rails4/ritrack/test/fixtures/ticket_queues.yml",
+		"/home/johns276/projects/rails4/ritrack/test/fixtures/users.yml",
+		"/home/johns276/projects/rails4/ritrack/test/fixtures/ticket_respones.yml",
+		"/home/johns276/projects/rails4/ritrack/test/fixtures/phones.yml",
+		"/home/johns276/projects/rails4/ritrack/test/fixtures/locations.yml",
+		"/home/johns276/projects/rails4/ritrack/test/models/ticket_test.rb",
+		"/home/johns276/projects/rails4/ritrack/test/models/ticket_response_test.rb",
+		"/home/johns276/projects/rails4/ritrack/app/models/user.rb",
+		"/home/johns276/projects/rails4/ritrack/app/models/ticket_response.rb",
+		"/home/johns276/projects/rails4/ritrack/db/migrate/20130827135409_rename_ticket_respone_to_ticket_response.rb",
+		"/home/johns276/projects/rails4/ritrack/db/migrate/20130826183525_create_ticket_respones.rb",
+		"/home/johns276/projects/rails4/ritrack/app/models/ticket_queue.rb",
+		"/home/johns276/projects/rails4/ritrack/test/models/ticket_queue_test.rb",
+		"/home/johns276/projects/rails4/ritrack/test/models/user_test.rb",
+		"/home/johns276/.config/sublime-text-3/Packages/Default/Preferences.sublime-settings",
+		"/home/johns276/.config/sublime-text-3/Packages/User/Preferences.sublime-settings",
+		"/home/johns276/projects/rails4/ritrack/db/migrate/20130826182256_create_tickets.rb",
+		"/home/johns276/projects/rails4/ritrack/app/models/location.rb",
+		"/home/johns276/projects/rails4/ritrack/app/models/phone.rb",
+		"/home/johns276/projects/rails4/ritrack/test/models/phone_test.rb",
+		"/home/johns276/projects/rails4/ritrack/.gitignore",
 		"/home/johns276/projects/ritrack/test/fixtures/users.yml",
+		"/home/johns276/Documents/godaddy.txt",
 		"/home/johns276/projects/ritrack/db/migrate/20130811212425_rename_user_column_last_name_string_to_last_name_on_users.rb",
 		"/home/johns276/projects/ritrack/app/controllers/users_controller.rb",
 		"/home/johns276/projects/ritrack/test/test_helper.rb",
@@ -78,19 +80,18 @@
 		"/home/johns276/projects/rtmntrk/app/models/user.rb",
 		"/home/johns276/projects/rtmntrk/test/fixtures/users.yml",
 		"/home/johns276/projects/rtmntrk/test/test_helper.rb",
-		"/home/johns276/projects/rtmntrk/Gemfile",
-		"/home/johns276/.config/sublime-text-3/Packages/User/Preferences.sublime-settings",
-		"/home/johns276/.config/sublime-text-3/Packages/Default/Preferences.sublime-settings"
+		"/home/johns276/projects/rtmntrk/Gemfile"
 	],
 	"find":
 	{
-		"height": 0.0
+		"height": 25.0
 	},
 	"find_in_files":
 	{
-		"height": 0.0,
+		"height": 93.0,
 		"where_history":
 		[
+			""
 		]
 	},
 	"find_state":
@@ -98,6 +99,11 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"respone",
+			"ticket_respones",
+			"TicketRespone",
+			"user",
+			"doesn't look like a valid phone number"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -105,6 +111,9 @@
 		"regex": false,
 		"replace_history":
 		[
+			"TicketResponse",
+			"ticket_queue",
+			"doesn't look like a valid North American or International phone number"
 		],
 		"reverse": false,
 		"show_context": true,
@@ -115,75 +124,18 @@
 	"groups":
 	[
 		{
-			"selected": 1,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "app/models/ticket.rb",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 951,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								899,
-								899
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Ruby/Ruby.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "test/models/ticket_test.rb",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 515,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								449,
-								449
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Ruby/Ruby.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				}
 			]
 		}
 	],
 	"incremental_find":
 	{
-		"height": 0.0
+		"height": 25.0
 	},
 	"input":
 	{
-		"height": 0.0
+		"height": 33.0
 	},
 	"layout":
 	{
@@ -211,7 +163,7 @@
 	"project": "ritrack.sublime-project",
 	"replace":
 	{
-		"height": 0.0
+		"height": 64.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -224,15 +176,11 @@
 	},
 	"select_project":
 	{
-		"height": 500.0,
+		"height": 0.0,
 		"selected_items":
 		[
-			[
-				"",
-				"~/projects/ritrack/ritrack.sublime-project"
-			]
 		],
-		"width": 380.0
+		"width": 0.0
 	},
 	"select_symbol":
 	{
@@ -249,7 +197,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 150.0,
+	"side_bar_width": 149.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

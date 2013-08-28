@@ -41,6 +41,7 @@ class User < ActiveRecord::Base
   has_many :phones
   has_many :locations
   has_many :tickets
+  has_many :tickets, :through => :ticket_observers
 
 
   private

@@ -99,3 +99,12 @@ Migrating to AddRequestorIdToTickets (20130827150753)
   [1m[36mSQL (0.7ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20130827150753"]]
   [1m[35m (17.2ms)[0m  COMMIT
   [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateTicketObservers (20130828184853)
+  [1m[35m (0.5ms)[0m  BEGIN
+  [1m[36m (57.2ms)[0m  [1mCREATE TABLE "ticket_observers" ("id" serial primary key, "user_id" integer, "ticket_id" integer, "start_date" date, "end_date" date, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35m (37.6ms)[0m  CREATE INDEX "index_ticket_observers_on_user_id" ON "ticket_observers" ("user_id")
+  [1m[36m (45.5ms)[0m  [1mCREATE INDEX "index_ticket_observers_on_ticket_id" ON "ticket_observers" ("ticket_id")[0m
+  [1m[35mSQL (1.6ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20130828184853"]]
+  [1m[36m (11.7ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.8ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
