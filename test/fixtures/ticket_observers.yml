@@ -1,13 +1,28 @@
+# == Schema Information
+#
+# Table name: ticket_observers
+#
+#  id         :integer          not null, primary key
+#  user_id    :integer
+#  ticket_id  :integer
+#  start_date :date
+#  end_date   :date
+#  created_at :datetime
+#  updated_at :datetime
+#
+
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  user_id: 
-  ticket_id: 
+  id: 1
+  user_id: 4
+  ticket_id: 1
   start_date: 2013-08-28
   end_date: 2013-08-28
 
 two:
-  user_id: 
-  ticket_id: 
+  id: 2
+  user_id: 4
+  ticket_id: 2
   start_date: 2013-08-28
   end_date: 2013-08-28

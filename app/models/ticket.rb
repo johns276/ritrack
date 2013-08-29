@@ -27,6 +27,7 @@ class Ticket < ActiveRecord::Base
   belongs_to :user
   belongs_to :requestor, class_name: "User", foreign_key: "requestor_id"
 
+  has_many :ticket_observers
   has_many :users, :through => :ticket_observers
 
 end

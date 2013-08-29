@@ -17,4 +17,16 @@ class TicketTest < ActiveSupport::TestCase
   should belong_to(:ticket_queue)
   should belong_to(:user)
 
+  context 'A given ticket' do
+
+    setup do
+      @ticket = Ticket.first()
+    end
+
+    should 'retrieve all observers, if there are any' do
+      p @ticket.ticket_observers
+    end
+
+  end # a given ticket
+
 end
