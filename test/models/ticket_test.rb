@@ -24,8 +24,16 @@ class TicketTest < ActiveSupport::TestCase
     end
 
     should 'retrieve all observers, if there are any' do
-      p @ticket.ticket_observers
+      observers = @ticket.ticket_observers
+      assert observers.nil? == false
+      assert observers.size > 0
+      users = @ticket.users
+      user = @ticket.user
+      assert users.size == 2
+      assert user.nil? != 0
     end
+
+
 
   end # a given ticket
 

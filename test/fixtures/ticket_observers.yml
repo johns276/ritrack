@@ -18,11 +18,11 @@ one:
   user_id: 4
   ticket_id: 1
   start_date: 2013-08-28
-  end_date: 2013-08-28
+  end_date:
 
 two:
   id: 2
   user_id: 4
-  ticket_id: 2
+  ticket_id: 1
   start_date: 2013-08-28
-  end_date: 2013-08-28
+  end_date:
