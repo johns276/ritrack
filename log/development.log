@@ -189,3 +189,32 @@ Migrating to AddIndexToEmailsAddress (20130902174215)
   [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
   [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
   [1m[35mActiveRecord::SchemaMigration Load (0.3ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mEmail Exists (13.1ms)[0m  [1mSELECT 1 AS one FROM "emails" WHERE LOWER("emails"."address") = LOWER('charles@yahoo.com') LIMIT 1[0m
+  [1m[35mEmail Exists (0.8ms)[0m  SELECT 1 AS one FROM "emails" WHERE LOWER("emails"."address") = LOWER('charles@yahoo.com') LIMIT 1
+  [1m[36mEmail Exists (0.7ms)[0m  [1mSELECT 1 AS one FROM "emails" WHERE LOWER("emails"."address") = LOWER('charles@yahoo.com') LIMIT 1[0m
+  [1m[35mEmail Exists (0.7ms)[0m  SELECT 1 AS one FROM "emails" WHERE LOWER("emails"."address") = LOWER('charles@yahoo.com') LIMIT 1
+  [1m[36mEmail Exists (1.3ms)[0m  [1mSELECT 1 AS one FROM "emails" WHERE LOWER("emails"."address") = LOWER('charles@yahoo.com') LIMIT 1[0m
+  [1m[35mEmail Exists (0.7ms)[0m  SELECT 1 AS one FROM "emails" WHERE LOWER("emails"."address") = LOWER('charles@yahoo.com') LIMIT 1
+  [1m[36mEmail Exists (1.3ms)[0m  [1mSELECT 1 AS one FROM "emails" WHERE LOWER("emails"."address") = LOWER('charles@yahoo.com') LIMIT 1[0m
+  [1m[35mEmail Exists (0.7ms)[0m  SELECT 1 AS one FROM "emails" WHERE LOWER("emails"."address") = LOWER('charles@yahoo.com') LIMIT 1
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mEmail Exists (1.3ms)[0m  SELECT 1 AS one FROM "emails" WHERE LOWER("emails"."address") = LOWER('charles@tds.net') LIMIT 1
+  [1m[36m (0.3ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mEmail Exists (0.6ms)[0m  SELECT 1 AS one FROM "emails" WHERE LOWER("emails"."address") = LOWER('charles@tds.net') LIMIT 1
+  [1m[36mSQL (5.9ms)[0m  [1mINSERT INTO "emails" ("address", "created_at", "start_date", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["address", "charles@tds.net"], ["created_at", Mon, 02 Sep 2013 19:37:05 UTC +00:00], ["start_date", Mon, 02 Sep 2013], ["updated_at", Mon, 02 Sep 2013 19:37:05 UTC +00:00]]
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mEmail Exists (0.8ms)[0m  [1mSELECT 1 AS one FROM "emails" WHERE LOWER("emails"."address") = LOWER('charles@tds.net') LIMIT 1[0m
+  [1m[35m (0.5ms)[0m  ROLLBACK
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.4ms)[0m  ROLLBACK
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mEmail Exists (1.4ms)[0m  SELECT 1 AS one FROM "emails" WHERE LOWER("emails"."address") = LOWER('charles@tds.net') LIMIT 1
+  [1m[36mEmail Exists (0.6ms)[0m  [1mSELECT 1 AS one FROM "emails" WHERE LOWER("emails"."address") = LOWER('charles@tds.net') LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  SAVEPOINT active_record_1
+  [1m[36mEmail Exists (0.6ms)[0m  [1mSELECT 1 AS one FROM "emails" WHERE LOWER("emails"."address") = LOWER('charles@tds.net') LIMIT 1[0m
+  [1m[35mSQL (5.8ms)[0m  INSERT INTO "emails" ("address", "created_at", "start_date", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["address", "charles@tds.net"], ["created_at", Mon, 02 Sep 2013 19:49:22 UTC +00:00], ["start_date", Mon, 02 Sep 2013], ["updated_at", Mon, 02 Sep 2013 19:49:22 UTC +00:00]]
+  [1m[36m (0.3ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.3ms)[0m  SAVEPOINT active_record_1
+  [1m[36mEmail Exists (0.6ms)[0m  [1mSELECT 1 AS one FROM "emails" WHERE LOWER("emails"."address") = LOWER('charles@tds.net') LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.4ms)[0m  [1mROLLBACK[0m
