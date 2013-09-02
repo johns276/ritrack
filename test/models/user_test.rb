@@ -23,6 +23,8 @@ class UserTest < ActiveSupport::TestCase
 
   should have_many(:phones)
   should have_many(:locations)
+  should have_many(:emails)
+  should have_many(:tickets)
 
   context 'A given user' do
 
@@ -109,7 +111,7 @@ class UserTest < ActiveSupport::TestCase
       @new_user.first_name = 'Willemina'
       @new_user.last_name = 'Konig'
       @new_user.start_date = Date.today()
-      @new_user.login_name = 'orstedma'
+      @new_user.login_name = 'johns276'
       @new_user.save
       @new_user.valid?
       assert @new_user.errors[:login_name].any? == true
@@ -246,11 +248,7 @@ class UserTest < ActiveSupport::TestCase
     end
 
     should 'not be valid if login name is a duplicate' do
-      @new_user = User.new
-      @new_user.first_name = 'Willemina'
-      @new_user.last_name = 'Konig'
-      @new_user.start_date = Date.today()
-      @new_user.login_name = 'orstedma'
+      @new_user = @user.dup
       @new_user.save
       @new_user.valid?
       assert @new_user.errors[:login_name].any? == true

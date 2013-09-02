@@ -1,0 +1,56 @@
+# == Schema Information
+#
+# Table name: emails
+#
+#  id         :integer          not null, primary key
+#  address    :string(255)
+#  start_date :date
+#  end_date   :date
+#  user_id    :integer
+#  created_at :datetime
+#  updated_at :datetime
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  address: cnjohnson@tds.net
+  start_date: 2013-09-02
+  end_date:
+  user_id: 1
+
+two:
+  address: gm.cnjohnson@gmail.com
+  start_date: 2013-09-02
+  end_date:
+  user_id: 1
+
+three:
+  address: kikuro.fujimoto@heroku.jp
+  start_date: 2013-09-02
+  end_date:
+  user_id: 2
+
+four:
+  address: wilsona@yahoo.com
+  start_date: 2013-09-02
+  end_date:
+  user_id: 4
+
+five:
+  address: winston.churchill@onetime.co.uk
+  start_date: 2013-09-02
+  end_date:
+  user_id: 5
+
+six:
+  address: grimstmo@aol.com
+  start_date: 2013-09-02
+  end_date:
+  user_id: 6
+
+seven:
+  address: winstem@hotmail.com
+  start_date: 2013-09-02
+  end_date:
+  user_id: 6

@@ -14,6 +14,7 @@
 #  created_at      :datetime
 #  updated_at      :datetime
 #  requestor_id    :integer
+#  body            :text
 #
 
 class Ticket < ActiveRecord::Base

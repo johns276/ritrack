@@ -11,10 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130828184853) do
+ActiveRecord::Schema.define(version: 20130902174215) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "emails", force: true do |t|
+    t.string   "address"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "emails", ["address"], name: "index_emails_on_address", unique: true, using: :btree
+  add_index "emails", ["user_id"], name: "index_emails_on_user_id", using: :btree
 
   create_table "locations", force: true do |t|
     t.string   "company"
@@ -89,6 +101,7 @@ ActiveRecord::Schema.define(version: 20130828184853) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "requestor_id"
+    t.text     "body"
   end
 
   add_index "tickets", ["requestor_id"], name: "index_tickets_on_requestor_id", using: :btree
@@ -105,9 +118,9 @@ ActiveRecord::Schema.define(version: 20130828184853) do
     t.datetime "updated_at"
     t.date     "start_date"
     t.date     "end_date"
-    t.boolean  "is_admin"
-    t.boolean  "can_login"
-    t.boolean  "user_by_email"
+    t.boolean  "is_admin",      default: false
+    t.boolean  "can_login",     default: false
+    t.boolean  "user_by_email", default: true
   end
 
 end

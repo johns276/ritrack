@@ -12,32 +12,38 @@
 #  updated_at    :datetime
 #  start_date    :date
 #  end_date      :date
-#  is_admin      :boolean
-#  can_login     :boolean
-#  user_by_email :boolean
+#  is_admin      :boolean          default(FALSE)
+#  can_login     :boolean          default(FALSE)
+#  user_by_email :boolean          default(TRUE)
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
   id: 1
-  first_name: Michael
-  last_name: Orsted
-  nick_name: Mike
-  login_name: orstedma
+  first_name: Charles
+  last_name: Johnson
+  nick_name: Charles
+  login_name: johns276
   start_date: "2012-02-04"
   end_date:
-  notes: "This user lives in Chicago."
+  notes: "Local sysadmin"
+  is_admin: true
+  can_login: true
+  user_by_email: true
 
 two:
   id: 2
-  first_name: Frederick
-  last_name: Free-Loader
-  nick_name: Frederick
-  login_name: freelofw
+  first_name: Kikaro
+  last_name: Fujimoto
+  nick_name: Freddy
+  login_name: kikarofj
   start_date: "2012-03-04"
   end_date:
-  notes: "This user is completely useless"
+  notes: "This other sysadmin"
+  is_admin: true
+  can_login: true
+  user_by_email: true
 
 three:
   id: 3
@@ -48,6 +54,9 @@ three:
   start_date: "2012-02-04"
   end_date: "2013-08-12"
   notes: "This user lives in New York. This user is disabled in the system."
+  is_admin: false
+  can_login: true
+  user_by_email: true
 
 four:
   id: 4
@@ -57,4 +66,33 @@ four:
   login_name: wilsona
   start_date: "2012-03-04"
   end_date:
-  notes: "Electrical engineer."
+  notes: "Local researcher."
+  is_admin: false
+  can_login: true
+  user_by_email: true
+
+five:
+  id: 5
+  first_name: Winston
+  last_name: Churchhill
+  nick_name: Wins
+  login_name: churchwe
+  start_date: "2012-03-04"
+  end_date:
+  notes: "Electronics engineer."
+  is_admin: false
+  can_login: false
+  user_by_email: true
+
+six:
+  id: 6
+  first_name: Michael
+  last_name: Grimstaad
+  nick_name: Mike
+  login_name: grimstmo
+  start_date: "2012-02-04"
+  end_date:
+  notes: "Mechanical Engineer."
+  is_admin: false
+  can_login: false
+  user_by_email: true
