@@ -129,8 +129,25 @@ class TicketTest < ActiveSupport::TestCase
       assert user.nil? == false
     end
 
-
-
   end # a given ticket
+
+  context 'A new ticket' do
+
+    setup do
+      @ticket = Ticket.new()
+    end
+
+    should 'not be initally valid' do
+      assert @ticket.valid? == false
+    end
+
+    should 'not be valid without belonging to a queue' do
+      ticket_queue = TicketQueue.first()
+      ticket_queue.tickets << @ticket
+      p @ticket
+      # assert @ticket.errors[:ticket_queue].any? == false
+    end
+
+  end # a new ticket
 
 end

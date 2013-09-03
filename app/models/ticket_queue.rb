@@ -26,7 +26,7 @@ class TicketQueue < ActiveRecord::Base
   validate  :no_end_date_without_start_date
   validate  :start_date_must_precede_end_date
 
-  has_many :tickets
+  has_many :tickets, inverse_of: :ticket_queue
 
   private
 
