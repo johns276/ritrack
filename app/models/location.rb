@@ -23,9 +23,10 @@ class Location < ActiveRecord::Base
   validate :company_requires_address
   validate :address2_requires_address1
 
-  validates :user_id, presence: true
+  validates :user_id, presence: true, numericality: { only_integer: true, greater_than: 0 }
 
   belongs_to :user
+  validates :user, presence: true
 
   private
 

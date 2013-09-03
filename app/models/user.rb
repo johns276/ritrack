@@ -12,9 +12,9 @@
 #  updated_at    :datetime
 #  start_date    :date
 #  end_date      :date
-#  is_admin      :boolean          default(FALSE)
-#  can_login     :boolean          default(FALSE)
-#  user_by_email :boolean          default(TRUE)
+#  is_admin      :boolean
+#  can_login     :boolean
+#  user_by_email :boolean
 #
 
 class User < ActiveRecord::Base
@@ -38,10 +38,10 @@ class User < ActiveRecord::Base
   validate  :no_end_date_without_start_date
   validate  :start_date_must_precede_end_date
 
-  has_many :emails
-  has_many :phones
-  has_many :locations
-  has_many :tickets
+  has_many :emails, inverse_of: :user
+  has_many :phones, inverse_of: :user
+  has_many :locations, inverse_of: :user
+  has_many :tickets, inverse_of: :user
 
   has_many  :ticket_observers
   has_many :tickets, :through => :ticket_observers

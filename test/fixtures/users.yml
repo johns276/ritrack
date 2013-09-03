@@ -12,9 +12,9 @@
 #  updated_at    :datetime
 #  start_date    :date
 #  end_date      :date
-#  is_admin      :boolean          default(FALSE)
-#  can_login     :boolean          default(FALSE)
-#  user_by_email :boolean          default(TRUE)
+#  is_admin      :boolean
+#  can_login     :boolean
+#  user_by_email :boolean
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html

@@ -9,7 +9,11 @@ class PhoneTest < ActiveSupport::TestCase
   should validate_presence_of(:tag)
   should ensure_inclusion_of(:tag).in_array(['Home', 'Office', 'Mobile', 'Pager'])
 
+  should belong_to(:user)
   should validate_presence_of(:user_id)
+  should validate_numericality_of(:user_id).only_integer
+  should allow_value(1).for(:user_id)
+  should_not allow_value(0).for(:user_id)
 
   should belong_to(:user)
 
@@ -163,7 +167,8 @@ class PhoneTest < ActiveSupport::TestCase
       assert @phone.valid? == false
       @phone.number = '345-6789'
       @phone.tag = 'Home'
-      @phone.user_id = 100
+      user = User.first()
+      @phone.user_id = user.id
       assert @phone.new_record? == true
       assert @phone.valid? == true
       assert @phone.save == true

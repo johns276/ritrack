@@ -14,8 +14,11 @@ class LocationTest < ActiveSupport::TestCase
   should_not allow_value('37122-444').for(:zip)
   should_not allow_value('3712-4444').for(:zip)
 
+  should belong_to(:user)
   should validate_presence_of(:user_id)
-  should belong_to :user
+  should validate_numericality_of(:user_id).only_integer
+  should allow_value(1).for(:user_id)
+  should_not allow_value(0).for(:user_id)
 
   context 'A given Location' do
 

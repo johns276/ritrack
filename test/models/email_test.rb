@@ -7,6 +7,11 @@ class EmailTest < ActiveSupport::TestCase
   should allow_value('ming.Zhu@accre.vanderbilt.edu').for(:address)
   should_not allow_value('ming.Zhu@accre').for(:address)
 
+  should belong_to(:user)
+  should validate_numericality_of(:user_id).only_integer
+  should allow_value(1).for(:user_id)
+  should_not allow_value(0).for(:user_id)
+
   should validate_presence_of(:start_date)
 
   context 'A given email' do
@@ -18,6 +23,15 @@ class EmailTest < ActiveSupport::TestCase
     should 'initially be valid' do
       @email.valid?
       assert @email.errors.any? == false
+    end
+
+    should 'not be valid with an new but invalid address' do
+      @email.address = 'david.groote@holland'
+      @email.valid?
+      assert assert @email.errors[:address].any? == true
+      @email.address = 'david.groote@holland.com'
+      @email.valid?
+      assert assert @email.errors[:address].any? == false
     end
 
     should 'not allow saving a duplicate email address' do
@@ -58,6 +72,15 @@ class EmailTest < ActiveSupport::TestCase
     should 'not initially be valid' do
       @email.valid?
       assert @email.errors.any? == true
+    end
+
+    should 'not be valid with an new but invalid address' do
+      @email.address = 'david.groote@holland'
+      @email.valid?
+      assert assert @email.errors[:address].any? == true
+      @email.address = 'david.groote@holland.com'
+      @email.valid?
+      assert assert @email.errors[:address].any? == false
     end
 
     should 'not allow saving a duplicate email address' do

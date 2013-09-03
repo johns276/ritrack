@@ -18,11 +18,12 @@ class Phone < ActiveRecord::Base
 
   validates :tag, presence: true, inclusion: { in: %w(Home Office Mobile Pager) }
 
-  validates :user_id, presence: true
+  validates :user_id, presence: true, numericality: { only_integer: true, greater_than: 0 }
 
   validate :number_format
 
   belongs_to :user
+  validates :user, presence: true
 
   private
 
