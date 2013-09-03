@@ -118,8 +118,7 @@ class UserTest < ActiveSupport::TestCase
     end
 
     should 'not be valid if login name is too long' do
-      name = 'a'
-      (1..254).each {|n| name = name + 'b'}
+      name = 'a' * 255
       assert name.size == 255
       @user.login_name = name
       @user.valid?
@@ -163,6 +162,22 @@ class UserTest < ActiveSupport::TestCase
       assert @user.save == true
       assert @user.phones.size > 2
       assert phone.new_record? == false
+    end
+
+    should 'allow retrieving of email addresses if there are any' do
+      emails = @user.emails
+      assert emails.size > 0
+    end
+
+    should 'retrieve only valid emails' do
+      emails = @user.emails
+      emails.each do |email|
+        assert email.valid? == true
+      end
+    end
+
+    should 'aalow the adding of a phone' do
+
     end
 
   end #A given user

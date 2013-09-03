@@ -21,6 +21,8 @@ class Email < ActiveRecord::Base
 
   validates :start_date, presence: true
 
+  validates :user_id, presence: true
+
   validate  :no_end_date_without_start_date
   validate  :start_date_must_precede_end_date
 

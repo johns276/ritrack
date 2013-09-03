@@ -63,6 +63,7 @@ class EmailTest < ActiveSupport::TestCase
     should 'not allow saving a duplicate email address' do
       @email.address = 'charles@mexico.mx'
       @email.start_date = Date.today()
+      @email.user_id = 1
       @email.save
       @email.valid?
       assert @email.errors.any? == false
@@ -71,6 +72,7 @@ class EmailTest < ActiveSupport::TestCase
       dupemail.valid?
       assert dupemail.errors[:address].any? == true
       dupemail.address = 'manfred@rocket.com'
+      dupemail.user_id = 1
       dupemail.save
       dupemail.valid?
       assert dupemail.errors[:address].any? == false
@@ -79,6 +81,7 @@ class EmailTest < ActiveSupport::TestCase
     should 'require a start date if an end date is present' do
       @email.address = 'charles@mexico.mx'
       @email.start_date = Date.today()
+      @email.user_id = 1
       assert @email.valid? == true
       @email.start_date = nil
       @email.end_date = Date.today()
