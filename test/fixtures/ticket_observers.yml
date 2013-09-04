@@ -15,14 +15,14 @@
 
 one:
   id: 1
-  user_id: 4
+  user_id: 6
   ticket_id: 1
   start_date: 2013-08-28
   end_date:
 
 two:
   id: 2
-  user_id: 4
+  user_id: 5
   ticket_id: 1
-  start_date: 2013-08-28
+  start_date: 2012-08-28
   end_date:

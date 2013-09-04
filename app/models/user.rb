@@ -41,10 +41,10 @@ class User < ActiveRecord::Base
   has_many :emails, inverse_of: :user
   has_many :phones, inverse_of: :user
   has_many :locations, inverse_of: :user
-  has_many :tickets, inverse_of: :user
+  has_many :tickets #, inverse_of: :user
 
-  has_many  :ticket_observers
-  has_many :tickets, :through => :ticket_observers
+  # has_many  :ticket_observers
+  # has_many :tickets, :through => :ticket_observers
 
 
   private

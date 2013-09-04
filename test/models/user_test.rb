@@ -176,8 +176,11 @@ class UserTest < ActiveSupport::TestCase
       end
     end
 
-    should 'aalow the adding of a phone' do
-
+    should 'allow retrieving of tickets if there are any' do
+      tickets = @user.tickets
+      p @user
+      p tickets
+      # assert tickets.size > 0
     end
 
   end #A given user

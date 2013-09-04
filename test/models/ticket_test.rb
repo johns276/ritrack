@@ -107,7 +107,7 @@ class TicketTest < ActiveSupport::TestCase
       assert @ticket.errors[:user].any? == true
     end
 
-    should 'no be valid without a valid user' do
+    should 'not be valid without a valid user' do
       user = User.new()
       assert user.valid? == false
       user.id = 16384
@@ -137,6 +137,28 @@ class TicketTest < ActiveSupport::TestCase
       user = @ticket.user
       assert users.size == 2
       assert user.nil? == false
+    end
+
+    should 'not be valid without a requestor' do
+      @ticket.requestor = nil
+      @ticket.valid?
+      assert @ticket.errors[:requestor_id].any? == true
+    end
+
+    should 'not be valid without a valid requestor' do
+      user = User.new()
+      assert user.valid? == false
+      user.id = 16384
+      @ticket.requestor = user
+      @ticket.save
+      @ticket.user.valid?
+      assert @ticket.errors[:requestor].any? == true
+    end
+
+    should 'retrieve its requestor' do
+      requestor = @ticket.requestor
+      assert requestor.nil? == false
+      assert requestor.valid? == true
     end
 
   end # a given ticket

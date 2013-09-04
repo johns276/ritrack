@@ -308,3 +308,83 @@ Migrating to AddIndexToEmailsAddress (20130902174215)
   [1m[35m (8.0ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20130825220004')
   [1m[36m (8.0ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20130811195557')[0m
   [1m[35mActiveRecord::SchemaMigration Load (0.8ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mSQL (2.9ms)[0m  [1mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (5.9ms)[0m  DROP TABLE "emails"
+  [1m[36m (57.9ms)[0m  [1mCREATE TABLE "emails" ("id" serial primary key, "address" character varying(255), "start_date" date, "end_date" date, "user_id" integer, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35m (49.7ms)[0m  CREATE UNIQUE INDEX "index_emails_on_address" ON "emails" USING btree ("address")
+  [1m[36m (53.6ms)[0m  [1mCREATE INDEX "index_emails_on_user_id" ON "emails" USING btree ("user_id")[0m
+  [1m[35m (14.4ms)[0m  DROP TABLE "locations"
+  [1m[36m (98.7ms)[0m  [1mCREATE TABLE "locations" ("id" serial primary key, "company" character varying(255), "organization" character varying(255), "address1" character varying(255), "address2" character varying(255), "city" character varying(255), "state" character varying(255), "zip" character varying(255), "country" character varying(255), "user_id" integer, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35m (49.6ms)[0m  CREATE INDEX "index_locations_on_user_id" ON "locations" USING btree ("user_id")
+  [1m[36m (7.4ms)[0m  [1mDROP TABLE "phones"[0m
+  [1m[35m (98.6ms)[0m  CREATE TABLE "phones" ("id" serial primary key, "number" character varying(255), "tag" character varying(255), "user_id" integer, "created_at" timestamp, "updated_at" timestamp) 
+  [1m[36m (37.1ms)[0m  [1mCREATE INDEX "index_phones_on_number" ON "phones" USING btree ("number")[0m
+  [1m[35m (36.5ms)[0m  CREATE INDEX "index_phones_on_user_id" ON "phones" USING btree ("user_id")
+  [1m[36m (6.0ms)[0m  [1mDROP TABLE "ticket_observers"[0m
+  [1m[35m (48.9ms)[0m  CREATE TABLE "ticket_observers" ("id" serial primary key, "user_id" integer, "ticket_id" integer, "start_date" date, "end_date" date, "created_at" timestamp, "updated_at" timestamp) 
+  [1m[36m (37.2ms)[0m  [1mCREATE INDEX "index_ticket_observers_on_ticket_id" ON "ticket_observers" USING btree ("ticket_id")[0m
+  [1m[35m (44.4ms)[0m  CREATE INDEX "index_ticket_observers_on_user_id" ON "ticket_observers" USING btree ("user_id")
+  [1m[36m (5.7ms)[0m  [1mDROP TABLE "ticket_queues"[0m
+  [1m[35m (90.6ms)[0m  CREATE TABLE "ticket_queues" ("id" serial primary key, "name" character varying(255), "description" character varying(255), "url" character varying(255), "priority" integer, "default_due_in" integer, "start_date" date, "end_date" date, "created_at" timestamp, "updated_at" timestamp) 
+  [1m[36m (14.1ms)[0m  [1mDROP TABLE "ticket_responses"[0m
+  [1m[35m (82.1ms)[0m  CREATE TABLE "ticket_responses" ("id" serial primary key, "body" text, "response_sent" timestamp, "ticket_id" integer, "created_at" timestamp, "updated_at" timestamp) 
+  [1m[36m (45.7ms)[0m  [1mCREATE INDEX "index_ticket_responses_on_ticket_id" ON "ticket_responses" USING btree ("ticket_id")[0m
+  [1m[35m (6.9ms)[0m  DROP TABLE "tickets"
+  [1m[36m (81.8ms)[0m  [1mCREATE TABLE "tickets" ("id" serial primary key, "subject" character varying(255), "status" character varying(255), "priority" integer, "start_date" timestamp, "end_date" timestamp, "due_date" timestamp, "user_id" integer, "ticket_queue_id" integer, "created_at" timestamp, "updated_at" timestamp, "requestor_id" integer, "body" text) [0m
+  [1m[35m (45.8ms)[0m  CREATE INDEX "index_tickets_on_requestor_id" ON "tickets" USING btree ("requestor_id")
+  [1m[36m (45.2ms)[0m  [1mCREATE INDEX "index_tickets_on_ticket_queue_id" ON "tickets" USING btree ("ticket_queue_id")[0m
+  [1m[35m (44.3ms)[0m  CREATE INDEX "index_tickets_on_user_id" ON "tickets" USING btree ("user_id")
+  [1m[36m (5.5ms)[0m  [1mDROP TABLE "users"[0m
+  [1m[35m (73.7ms)[0m  CREATE TABLE "users" ("id" serial primary key, "first_name" character varying(255), "last_name" character varying(255), "nick_name" character varying(255), "login_name" character varying(255), "notes" text, "created_at" timestamp, "updated_at" timestamp, "start_date" date, "end_date" date, "is_admin" boolean, "can_login" boolean, "user_by_email" boolean) 
+  [1m[36m (7.6ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.9ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.5ms)[0m  [1mBEGIN[0m
+  [1m[35mTicket Load (1.6ms)[0m  SELECT "tickets".* FROM "tickets" ORDER BY "tickets"."id" ASC LIMIT 1
+  [1m[36m (0.6ms)[0m  [1mROLLBACK[0m
+  [1m[36m (229.0ms)[0m  [1mDROP DATABASE IF EXISTS "ritrack_development"[0m
+  [1m[35m (220.5ms)[0m  DROP DATABASE IF EXISTS "ritrack_test"
+  [1m[36m (687.9ms)[0m  [1mCREATE DATABASE "ritrack_development" ENCODING = 'unicode'[0m
+  [1m[35m (686.9ms)[0m  CREATE DATABASE "ritrack_test" ENCODING = 'unicode'
+  [1m[36mSQL (3.0ms)[0m  [1mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (56.1ms)[0m  CREATE TABLE "emails" ("id" serial primary key, "address" character varying(255), "start_date" date, "end_date" date, "user_id" integer, "created_at" timestamp, "updated_at" timestamp) 
+  [1m[36m (50.1ms)[0m  [1mCREATE UNIQUE INDEX "index_emails_on_address" ON "emails" USING btree ("address")[0m
+  [1m[35m (50.7ms)[0m  CREATE INDEX "index_emails_on_user_id" ON "emails" USING btree ("user_id")
+  [1m[36m (88.3ms)[0m  [1mCREATE TABLE "locations" ("id" serial primary key, "company" character varying(255), "organization" character varying(255), "address1" character varying(255), "address2" character varying(255), "city" character varying(255), "state" character varying(255), "zip" character varying(255), "country" character varying(255), "user_id" integer, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35m (41.4ms)[0m  CREATE INDEX "index_locations_on_user_id" ON "locations" USING btree ("user_id")
+  [1m[36m (80.3ms)[0m  [1mCREATE TABLE "phones" ("id" serial primary key, "number" character varying(255), "tag" character varying(255), "user_id" integer, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35m (41.4ms)[0m  CREATE INDEX "index_phones_on_number" ON "phones" USING btree ("number")
+  [1m[36m (44.5ms)[0m  [1mCREATE INDEX "index_phones_on_user_id" ON "phones" USING btree ("user_id")[0m
+  [1m[35m (56.3ms)[0m  CREATE TABLE "ticket_observers" ("id" serial primary key, "user_id" integer, "ticket_id" integer, "start_date" date, "end_date" date, "created_at" timestamp, "updated_at" timestamp) 
+  [1m[36m (45.9ms)[0m  [1mCREATE INDEX "index_ticket_observers_on_ticket_id" ON "ticket_observers" USING btree ("ticket_id")[0m
+  [1m[35m (44.5ms)[0m  CREATE INDEX "index_ticket_observers_on_user_id" ON "ticket_observers" USING btree ("user_id")
+  [1m[36m (79.9ms)[0m  [1mCREATE TABLE "ticket_queues" ("id" serial primary key, "name" character varying(255), "description" character varying(255), "url" character varying(255), "priority" integer, "default_due_in" integer, "start_date" date, "end_date" date, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35m (89.5ms)[0m  CREATE TABLE "ticket_responses" ("id" serial primary key, "body" text, "response_sent" timestamp, "ticket_id" integer, "created_at" timestamp, "updated_at" timestamp) 
+  [1m[36m (47.5ms)[0m  [1mCREATE INDEX "index_ticket_responses_on_ticket_id" ON "ticket_responses" USING btree ("ticket_id")[0m
+  [1m[35m (72.5ms)[0m  CREATE TABLE "tickets" ("id" serial primary key, "subject" character varying(255), "status" character varying(255), "priority" integer, "start_date" timestamp, "end_date" timestamp, "due_date" timestamp, "user_id" integer, "ticket_queue_id" integer, "created_at" timestamp, "updated_at" timestamp, "requestor_id" integer, "body" text) 
+  [1m[36m (46.1ms)[0m  [1mCREATE INDEX "index_tickets_on_requestor_id" ON "tickets" USING btree ("requestor_id")[0m
+  [1m[35m (44.5ms)[0m  CREATE INDEX "index_tickets_on_ticket_queue_id" ON "tickets" USING btree ("ticket_queue_id")
+  [1m[36m (43.4ms)[0m  [1mCREATE INDEX "index_tickets_on_user_id" ON "tickets" USING btree ("user_id")[0m
+  [1m[35m (79.7ms)[0m  CREATE TABLE "users" ("id" serial primary key, "first_name" character varying(255), "last_name" character varying(255), "nick_name" character varying(255), "login_name" character varying(255), "notes" text, "created_at" timestamp, "updated_at" timestamp, "start_date" date, "end_date" date, "is_admin" boolean, "can_login" boolean, "user_by_email" boolean) 
+  [1m[36m (10.7ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" character varying(255) NOT NULL) [0m
+  [1m[35m (46.0ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (1.0ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (5.5ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20130902174215')
+  [1m[36m (8.0ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20130826182256')[0m
+  [1m[35m (7.9ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20130827150753')
+  [1m[36m (8.1ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20130821233827')[0m
+  [1m[35m (7.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20130826154055')
+  [1m[36m (8.0ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20130811212425')[0m
+  [1m[35m (7.9ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20130816142047')
+  [1m[36m (8.1ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20130811195620')[0m
+  [1m[35m (7.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20130826183525')
+  [1m[36m (8.0ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20130811193133')[0m
+  [1m[35m (7.9ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20130828184853')
+  [1m[36m (7.9ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20130902171444')[0m
+  [1m[35m (8.0ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20130902134335')
+  [1m[36m (8.0ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20130827135409')[0m
+  [1m[35m (7.9ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20130825220004')
+  [1m[36m (8.0ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20130811195557')[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.6ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.5ms)[0m  [1mBEGIN[0m
+  [1m[35mTicket Load (2.3ms)[0m  SELECT "tickets".* FROM "tickets" ORDER BY "tickets"."id" ASC LIMIT 1
+  [1m[36m (0.7ms)[0m  [1mROLLBACK[0m
