@@ -33,7 +33,7 @@ class Ticket < ActiveRecord::Base
 
   validates :body, presence: true, length: { minimum: 2 }
 
-  validates :user_id, presence: true, numericality: { only_integer: true, greater_than: 0 }
+  validates :user_id, presence: true, numericality: { only_integer: true, greater_than: 0 }, on: :update
   validates :ticket_queue_id, presence: true, numericality: { only_integer: true, greater_than: 0 }
   validates :requestor_id, presence: true, numericality: { only_integer: true, greater_than: 0 }
 
@@ -42,9 +42,11 @@ class Ticket < ActiveRecord::Base
 
   belongs_to :user
   validates :user, presence: true
+  validates_associated :user
 
   belongs_to :requestor, class_name: "User", foreign_key: "requestor_id"
   validates :requestor, presence: true
+  validates_associated :requestor
 
   has_many :ticket_observers
   has_many :users, :through => :ticket_observers

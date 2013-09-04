@@ -33,9 +33,9 @@ class TicketTest < ActiveSupport::TestCase
   should_not allow_value(0).for(:ticket_queue_id)
 
   should belong_to(:user)
-  should validate_numericality_of(:user_id).only_integer
-  should allow_value(1).for(:user_id)
-  should_not allow_value(0).for(:user_id)
+  # should validate_numericality_of(:user_id).only_integer
+  # should allow_value(1).for(:user_id)
+  # should_not allow_value(0).for(:user_id)
 
   context 'A given ticket' do
 
@@ -107,6 +107,16 @@ class TicketTest < ActiveSupport::TestCase
       assert @ticket.errors[:user].any? == true
     end
 
+    should 'no be valid without a valid user' do
+      user = User.new()
+      assert user.valid? == false
+      user.id = 16384
+      @ticket.user = user
+      @ticket.save
+      @ticket.user.valid?
+      assert @ticket.errors[:user].any? == true
+    end
+
     should 'retrieve its ticket queue' do
       ticket_queue = @ticket.ticket_queue
       assert ticket_queue.nil? == false
@@ -144,9 +154,12 @@ class TicketTest < ActiveSupport::TestCase
     should 'not be valid without belonging to a queue' do
       ticket_queue = TicketQueue.first()
       ticket_queue.tickets << @ticket
-      p @ticket
-      # assert @ticket.errors[:ticket_queue].any? == false
+      @ticket.valid?
+      assert @ticket.errors[:ticket_queue].any? == false
+      assert @ticket.errors.any? == true
     end
+
+    # should 'not be valid without a user'
 
   end # a new ticket
 
