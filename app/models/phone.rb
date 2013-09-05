@@ -16,7 +16,7 @@ class Phone < ActiveRecord::Base
   validates :number, length: { minimum: 7 }
   validates :number, length: { maximum: 24 }
 
-  validates :tag, presence: true, inclusion: { in: %w(Home Office Mobile Pager) }
+  validates :tag, presence: true, inclusion: { in: %w(Home Office Mobile Pager), message: "%{value} is not a valid tag" }
 
   validates :user_id, presence: true, numericality: { only_integer: true, greater_than: 0 }
 

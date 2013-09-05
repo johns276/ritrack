@@ -39,8 +39,14 @@ class User < ActiveRecord::Base
   validate  :start_date_must_precede_end_date
 
   has_many :emails, inverse_of: :user
+  validates_associated :emails
+
   has_many :phones, inverse_of: :user
+  validates_associated :phones
+
   has_many :locations, inverse_of: :user
+  validates_associated :locations
+
   has_many :tickets, inverse_of: :user
 
   has_many  :ticket_observers
