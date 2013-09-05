@@ -388,3 +388,120 @@ Migrating to AddIndexToEmailsAddress (20130902174215)
   [1m[36m (0.5ms)[0m  [1mBEGIN[0m
   [1m[35mTicket Load (2.3ms)[0m  SELECT "tickets".* FROM "tickets" ORDER BY "tickets"."id" ASC LIMIT 1
   [1m[36m (0.7ms)[0m  [1mROLLBACK[0m
+  [1m[36m (16.1ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" character varying(255) NOT NULL) [0m
+  [1m[35m (60.7ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateUsers (20130811193133)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (80.6ms)[0m  [1mCREATE TABLE "users" ("id" serial primary key, "first_name" character varying(255), "last_name_string" character varying(255), "nick_name" character varying(255), "login_name" character varying(255), "notes" text, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (1.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20130811193133"]]
+  [1m[36m (17.0ms)[0m  [1mCOMMIT[0m
+Migrating to AddStartDateToUser (20130811195557)
+  [1m[35m (0.4ms)[0m  BEGIN
+  [1m[36m (0.7ms)[0m  [1mALTER TABLE "users" ADD COLUMN "start_date" date[0m
+  [1m[35mSQL (0.8ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20130811195557"]]
+  [1m[36m (10.3ms)[0m  [1mCOMMIT[0m
+Migrating to AddEndDateToUser (20130811195620)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "users" ADD COLUMN "end_date" date[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20130811195620"]]
+  [1m[36m (11.0ms)[0m  [1mCOMMIT[0m
+Migrating to RenameUserColumnLastNameStringToLastNameOnUsers (20130811212425)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "users" RENAME COLUMN "last_name_string" TO "last_name"[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20130811212425"]]
+  [1m[36m (8.9ms)[0m  [1mCOMMIT[0m
+Migrating to CreatePhones (20130816142047)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (89.0ms)[0m  [1mCREATE TABLE "phones" ("id" serial primary key, "number" character varying(255), "tag" character varying(255), "user_id" integer, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35m (38.8ms)[0m  CREATE INDEX "index_phones_on_user_id" ON "phones" ("user_id")
+  [1m[36m (46.0ms)[0m  [1mCREATE INDEX "index_phones_on_number" ON "phones" ("number")[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20130816142047"]]
+  [1m[36m (19.6ms)[0m  [1mCOMMIT[0m
+Migrating to CreateLocations (20130821233827)
+  [1m[35m (0.4ms)[0m  BEGIN
+  [1m[36m (81.0ms)[0m  [1mCREATE TABLE "locations" ("id" serial primary key, "company" character varying(255), "organization" character varying(255), "address1" character varying(255), "address2" character varying(255), "city" character varying(255), "state" character varying(255), "zip" character varying(255), "country" character varying(255), "user_id" integer, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35m (30.8ms)[0m  CREATE INDEX "index_locations_on_user_id" ON "locations" ("user_id")
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20130821233827"]]
+  [1m[35m (18.8ms)[0m  COMMIT
+Migrating to AddDetailsToUsers (20130825220004)
+  [1m[36m (0.4ms)[0m  [1mBEGIN[0m
+  [1m[35m (65.5ms)[0m  ALTER TABLE "users" ADD COLUMN "is_admin" boolean DEFAULT 'f'
+  [1m[36m (65.4ms)[0m  [1mALTER TABLE "users" ADD COLUMN "can_login" boolean DEFAULT 'f'[0m
+  [1m[35m (66.0ms)[0m  ALTER TABLE "users" ADD COLUMN "user_by_email" boolean DEFAULT 't'
+  [1m[36mSQL (0.7ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20130825220004"]]
+  [1m[35m (24.2ms)[0m  COMMIT
+Migrating to CreateTicketQueues (20130826154055)
+  [1m[36m (0.4ms)[0m  [1mBEGIN[0m
+  [1m[35m (84.2ms)[0m  CREATE TABLE "ticket_queues" ("id" serial primary key, "name" character varying(255), "description" character varying(255), "url" character varying(255), "priority" integer, "default_due_in" integer, "start_date" date, "end_date" date, "created_at" timestamp, "updated_at" timestamp) 
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20130826154055"]]
+  [1m[35m (23.1ms)[0m  COMMIT
+Migrating to CreateTickets (20130826182256)
+  [1m[36m (0.4ms)[0m  [1mBEGIN[0m
+  [1m[35m (85.6ms)[0m  CREATE TABLE "tickets" ("id" serial primary key, "subject" character varying(255), "status" character varying(255), "priority" integer, "start_date" timestamp, "end_date" timestamp, "due_date" timestamp, "user_id" integer, "ticket_queue_id" integer, "created_at" timestamp, "updated_at" timestamp) 
+  [1m[36m (31.0ms)[0m  [1mCREATE INDEX "index_tickets_on_user_id" ON "tickets" ("user_id")[0m
+  [1m[35m (30.3ms)[0m  CREATE INDEX "index_tickets_on_ticket_queue_id" ON "tickets" ("ticket_queue_id")
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20130826182256"]]
+  [1m[35m (22.7ms)[0m  COMMIT
+Migrating to CreateTicketRespones (20130826183525)
+  [1m[36mActiveRecord::SchemaMigration Load (0.9ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateTicketRespones (20130826183525)
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateTicketRespones (20130826183525)
+  [1m[36m (0.6ms)[0m  [1mSELECT version FROM schema_migrations[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateTicketResponses (20130826183525)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (85.1ms)[0m  [1mCREATE TABLE "ticket_responses" ("id" serial primary key, "body" text, "response_sent" timestamp, "ticket_id" integer, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35m (45.4ms)[0m  CREATE INDEX "index_ticket_responses_on_ticket_id" ON "ticket_responses" ("ticket_id")
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20130826183525"]]
+  [1m[35m (17.6ms)[0m  COMMIT
+Migrating to RenameTicketResponeToTicketResponse (20130827135409)
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.6ms)[0m  ALTER TABLE "ticket_responses" RENAME TO "ticket_responses"
+PG::DuplicateTable: ERROR:  relation "ticket_responses" already exists
+: ALTER TABLE "ticket_responses" RENAME TO "ticket_responses"
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to RenameTicketResponeToTicketResponse (20130827135409)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (25.3ms)[0m  [1mALTER TABLE "ticket_responses" RENAME TO "ticket_responses"[0m
+PG::DuplicateTable: ERROR:  relation "ticket_responses" already exists
+: ALTER TABLE "ticket_responses" RENAME TO "ticket_responses"
+  [1m[35m (0.3ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to RenameTicketResponeToTicketResponse (20130827135409)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (1.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20130827135409"]]
+  [1m[35m (26.8ms)[0m  COMMIT
+Migrating to AddRequestorIdToTickets (20130827150753)
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35m (1.1ms)[0m  ALTER TABLE "tickets" ADD COLUMN "requestor_id" integer
+  [1m[36m (40.2ms)[0m  [1mCREATE INDEX "index_tickets_on_requestor_id" ON "tickets" ("requestor_id")[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20130827150753"]]
+  [1m[36m (21.1ms)[0m  [1mCOMMIT[0m
+Migrating to CreateTicketObservers (20130828184853)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (45.2ms)[0m  [1mCREATE TABLE "ticket_observers" ("id" serial primary key, "user_id" integer, "ticket_id" integer, "start_date" date, "end_date" date, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35m (30.7ms)[0m  CREATE INDEX "index_ticket_observers_on_user_id" ON "ticket_observers" ("user_id")
+  [1m[36m (55.4ms)[0m  [1mCREATE INDEX "index_ticket_observers_on_ticket_id" ON "ticket_observers" ("ticket_id")[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20130828184853"]]
+  [1m[36m (21.6ms)[0m  [1mCOMMIT[0m
+Migrating to AddBodyToTickets (20130902134335)
+  [1m[35m (0.4ms)[0m  BEGIN
+  [1m[36m (0.6ms)[0m  [1mALTER TABLE "tickets" ADD COLUMN "body" text[0m
+  [1m[35mSQL (0.7ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20130902134335"]]
+  [1m[36m (9.1ms)[0m  [1mCOMMIT[0m
+Migrating to CreateEmails (20130902171444)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (38.6ms)[0m  [1mCREATE TABLE "emails" ("id" serial primary key, "address" character varying(255), "start_date" date, "end_date" date, "user_id" integer, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35m (30.8ms)[0m  CREATE INDEX "index_emails_on_user_id" ON "emails" ("user_id")
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20130902171444"]]
+  [1m[35m (19.8ms)[0m  COMMIT
+Migrating to AddIndexToEmailsAddress (20130902174215)
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35m (53.7ms)[0m  CREATE UNIQUE INDEX "index_emails_on_address" ON "emails" ("address")
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20130902174215"]]
+  [1m[35m (4.4ms)[0m  COMMIT
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36m (0.6ms)[0m  [1mSELECT version FROM schema_migrations[0m
