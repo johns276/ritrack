@@ -26,16 +26,6 @@
 *.sql
 *.sqlite
 
-# OS generated files #
-######################
-.DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-Thumbs.db
-
 # RAILS files #
 ###############
 log/*
@@ -71,12 +61,9 @@ spec/reports
 test/tmp
 test/version_tmp
 tmp
-
-# YARD artifacts
-.yardoc
-_yardoc
-doc/
-
 ritrack.sublime-workspace
 Gemfile.lock
 config/database.yaml
+log/test.log
+ritrack.sublime-workspace
+ritrack.sublime-project
