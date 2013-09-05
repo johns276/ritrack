@@ -12,9 +12,9 @@
 #  updated_at    :datetime
 #  start_date    :date
 #  end_date      :date
-#  is_admin      :boolean
-#  can_login     :boolean
-#  user_by_email :boolean
+#  is_admin      :boolean          default(FALSE)
+#  can_login     :boolean          default(FALSE)
+#  user_by_email :boolean          default(TRUE)
 #
 
 class User < ActiveRecord::Base
@@ -41,9 +41,9 @@ class User < ActiveRecord::Base
   has_many :emails, inverse_of: :user
   has_many :phones, inverse_of: :user
   has_many :locations, inverse_of: :user
-  has_many :tickets #, inverse_of: :user
+  has_many :tickets, inverse_of: :user
 
-  # has_many  :ticket_observers
+  has_many  :ticket_observers
   # has_many :tickets, :through => :ticket_observers
 
 

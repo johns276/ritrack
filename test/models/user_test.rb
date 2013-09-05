@@ -179,6 +179,15 @@ class UserTest < ActiveSupport::TestCase
       assert tickets.size > 0
     end
 
+    should 'find all the observed tickets' do
+      ticket_observers = @user.ticket_observers
+      assert ticket_observers.size > 0
+      ticket_observers.each do |to|
+        ticket = Ticket.find(to.ticket_id)
+        assert ticket.valid?
+      end
+    end
+
   end #A given user
 
   context 'A new user' do
