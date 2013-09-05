@@ -55,9 +55,8 @@ class UserTest < ActiveSupport::TestCase
     end
 
     should 'not be valid if first name is too long' do
-      name = 'Aa'
-      (1..256).each {|n| name = name + 'bb'}
-      @user.first_name = name
+      name = 'a' * 255
+      @user.first_name = 'A' + name
       @user.valid?
       assert @user.errors[:first_name].any? == true
     end
@@ -75,9 +74,8 @@ class UserTest < ActiveSupport::TestCase
     end
 
     should 'not be valid if last name is too long' do
-      name = 'Aa'
-      (1..256).each {|n| name = name + 'bb'}
-      @user.last_name = name
+      name = 'a' * 255
+      @user.last_name = 'A' + name
       @user.valid?
       assert @user.errors[:last_name].any? == true
     end
@@ -178,9 +176,7 @@ class UserTest < ActiveSupport::TestCase
 
     should 'allow retrieving of tickets if there are any' do
       tickets = @user.tickets
-      p @user
-      p tickets
-      # assert tickets.size > 0
+      assert tickets.size > 0
     end
 
   end #A given user
