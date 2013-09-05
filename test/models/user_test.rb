@@ -151,7 +151,7 @@ class UserTest < ActiveSupport::TestCase
       end
     end
 
-    should 'allow adding a phone' do
+    should 'allow adding a valid phone' do
       phone = Phone.new()
       phone.number = '234-5678'
       phone.tag = 'Home'
@@ -160,6 +160,16 @@ class UserTest < ActiveSupport::TestCase
       assert @user.save == true
       assert @user.phones.size > 2
       assert phone.new_record? == false
+    end
+
+    should 'not allow adding an invalid phone' do
+      phone = Phone.new()
+      phone.number = '234-5678'
+      phone.tag = 'Hummus'
+      assert phone.new_record? == true
+      @user.phones << phone
+      assert @user.save == false
+      assert phone.valid? == false
     end
 
     should 'allow retrieving of email addresses if there are any' do
