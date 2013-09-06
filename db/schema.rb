@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130902174215) do
+ActiveRecord::Schema.define(version: 20130906173110) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,6 +54,21 @@ ActiveRecord::Schema.define(version: 20130902174215) do
 
   add_index "phones", ["number"], name: "index_phones_on_number", using: :btree
   add_index "phones", ["user_id"], name: "index_phones_on_user_id", using: :btree
+
+  create_table "tasks", force: true do |t|
+    t.string   "subject"
+    t.datetime "start_date"
+    t.date     "due_date"
+    t.datetime "end_date"
+    t.text     "notes"
+    t.integer  "ticket_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "tasks", ["ticket_id"], name: "index_tasks_on_ticket_id", using: :btree
+  add_index "tasks", ["user_id"], name: "index_tasks_on_user_id", using: :btree
 
   create_table "ticket_observers", force: true do |t|
     t.integer  "user_id"

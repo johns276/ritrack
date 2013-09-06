@@ -964,3 +964,12 @@ Migrating to AddIndexToEmailsAddress (20130902174215)
   [1m[36m (0.2ms)[0m  [1mBEGIN[0m
   [1m[35mUser Load (1.0ms)[0m  SELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT 1
   [1m[36m (0.4ms)[0m  [1mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (7.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateTasks (20130906173110)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (240.5ms)[0m  [1mCREATE TABLE "tasks" ("id" serial primary key, "subject" character varying(255), "start_date" timestamp, "due_date" date, "end_date" timestamp, "notes" text, "ticket_id" integer, "user_id" integer, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35m (37.0ms)[0m  CREATE INDEX "index_tasks_on_ticket_id" ON "tasks" ("ticket_id")
+  [1m[36m (31.1ms)[0m  [1mCREATE INDEX "index_tasks_on_user_id" ON "tasks" ("user_id")[0m
+  [1m[35mSQL (24.6ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20130906173110"]]
+  [1m[36m (26.8ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.4ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
