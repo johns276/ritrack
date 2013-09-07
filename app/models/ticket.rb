@@ -51,6 +51,9 @@ class Ticket < ActiveRecord::Base
   has_many :ticket_observers
   has_many :users, :through => :ticket_observers
 
+  has_many  :tasks, inverse_of: :ticket
+  validates_associated :tasks
+
   private
 
   def no_end_date_without_start_date

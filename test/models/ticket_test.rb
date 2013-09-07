@@ -135,7 +135,7 @@ class TicketTest < ActiveSupport::TestCase
       assert observers.size > 0
       users = @ticket.users
       user = @ticket.user
-      assert users.size == 2
+      assert users.size == 4
       assert user.nil? == false
     end
 

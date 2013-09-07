@@ -52,6 +52,9 @@ class User < ActiveRecord::Base
   has_many  :ticket_observers
   # has_many :tickets, :through => :ticket_observers
 
+  has_many  :tasks, inverse_of: :user
+  validates_associated :tasks
+
 
   private
 
