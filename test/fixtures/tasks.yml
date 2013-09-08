@@ -7,7 +7,7 @@
 #  start_date :datetime
 #  due_date   :datetime
 #  end_date   :datetime
-#  notes      :text
+#  note       :text
 #  ticket_id  :integer
 #  user_id    :integer
 #  created_at :datetime
@@ -21,7 +21,7 @@ one:
   start_date: 2013-09-06 12:31:10
   due_date: 2013-09-30 12:31:10
   end_date:
-  notes: MyText
+  note: MyText
   ticket_id: 1
   user_id: 1
 
@@ -30,6 +30,6 @@ two:
   start_date: 2013-09-06 12:31:10
   due_date: 2013-09-07 12:31:10
   end_date: 2013-09-06 12:31:10
-  notes: MyText
+  note: MyText
   ticket_id: 1
   user_id: 1

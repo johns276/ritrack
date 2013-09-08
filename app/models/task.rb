@@ -7,7 +7,7 @@
 #  start_date :datetime
 #  due_date   :datetime
 #  end_date   :datetime
-#  notes      :text
+#  note       :text
 #  ticket_id  :integer
 #  user_id    :integer
 #  created_at :datetime
