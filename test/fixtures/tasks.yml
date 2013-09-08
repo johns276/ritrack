@@ -29,7 +29,7 @@ two:
   subject: MyString
   start_date: 2013-09-06 12:31:10
   due_date: 2013-09-07 12:31:10
-  end_date: 2013-09-06 12:31:10
+  end_date:
   note: MyText
   ticket_id: 1
   user_id: 1

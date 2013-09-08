@@ -198,6 +198,24 @@ class UserTest < ActiveSupport::TestCase
       end
     end
 
+    should 'retrieve all tasks, if there are any' do
+      tasks = @user.tasks
+      assert tasks.nil? == false
+      assert tasks.size > 0
+    end
+
+    should 'not allow an invalid task' do
+      task = Task.new()
+      task.start_date = Date.today()
+      task.note = 'This is a note.'
+      task.subject = nil
+      task.user_id = 1
+      assert task.valid? == false
+      @user.tasks << task
+      @user.valid?
+      assert @user.errors.any? == true
+    end
+
   end #A given user
 
   context 'A new user' do

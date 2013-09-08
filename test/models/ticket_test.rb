@@ -33,9 +33,8 @@ class TicketTest < ActiveSupport::TestCase
   should_not allow_value(0).for(:ticket_queue_id)
 
   should belong_to(:user)
-  # should validate_numericality_of(:user_id).only_integer
-  # should allow_value(1).for(:user_id)
-  # should_not allow_value(0).for(:user_id)
+
+  should have_many(:tasks)
 
   context 'A given ticket' do
 
@@ -161,6 +160,24 @@ class TicketTest < ActiveSupport::TestCase
       assert requestor.valid? == true
     end
 
+    should 'retrieve all tasks, if there are any' do
+      tasks = @ticket.tasks
+      assert tasks.nil? == false
+      assert tasks.size > 0
+    end
+
+    should 'not allow an invalid task' do
+      task = Task.new()
+      task.start_date = Date.today()
+      task.note = 'This is a note.'
+      task.subject = nil
+      task.user_id = 1
+      assert task.valid? == false
+      @ticket.tasks << task
+      @ticket.valid?
+      assert @ticket.errors.any? == true
+    end
+
   end # a given ticket
 
   context 'A new ticket' do
@@ -180,8 +197,6 @@ class TicketTest < ActiveSupport::TestCase
       assert @ticket.errors[:ticket_queue].any? == false
       assert @ticket.errors.any? == true
     end
-
-    # should 'not be valid without a user'
 
   end # a new ticket
 

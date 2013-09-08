@@ -7,8 +7,8 @@ class TaskTest < ActiveSupport::TestCase
   should ensure_length_of(:subject).is_at_most(255)
 
   should validate_presence_of :start_date
-  should validate_presence_of :notes
-  should ensure_length_of(:notes).is_at_least(5)
+  should validate_presence_of :note
+  should ensure_length_of(:note).is_at_least(5)
 
   should belong_to(:ticket)
   should belong_to(:user)
@@ -34,16 +34,16 @@ class TaskTest < ActiveSupport::TestCase
       assert @task.errors[:subject].any? == false
     end
 
-    should 'not be valid if notes are invalid' do
-      @task.notes = ''
+    should 'not be valid if note is invalid' do
+      @task.note = ''
       @task.valid?
-      assert @task.errors[:notes].any? == true
-      @task.notes = 'a'
+      assert @task.errors[:note].any? == true
+      @task.note = 'a'
       @task.valid?
-      assert @task.errors[:notes].any? == true
-      @task.notes = 'This is a note.'
+      assert @task.errors[:note].any? == true
+      @task.note = 'This is a note.'
       @task.valid?
-      assert @task.errors[:notes].any? == false
+      assert @task.errors[:note].any? == false
     end
 
     should 'require a start date if an end date is present' do

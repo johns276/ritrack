@@ -22,8 +22,8 @@ class Task < ActiveRecord::Base
 
   validates :start_date, presence: true
 
-  validates :notes, presence: true
-  validates :notes, length: { minimum: 5 }
+  validates :note, presence: true
+  validates :note, length: { minimum: 5 }
 
   validate :no_end_date_without_start_date
   validate :start_date_must_precede_end_date
