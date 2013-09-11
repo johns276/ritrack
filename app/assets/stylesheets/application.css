@@ -11,65 +11,62 @@
  *= require_self
  *= require_tree .
  */
-#globalMenu-container
-    {
-    position: absolute;
-    top: 0.0em;
-    left: 0.0em;
-    }
 
-#globalMenu
-    {
+#globalMenu-container {
+    /* position: absolute; */
+    top: 4.0em;
+    left: 0.0em;
+}
+
+#globalMenu {
     font-size: medium;
     font-family: arial, helvetica, sans-serif;
     width:100%;
     float:left;
-    clear:both;
+    /* clear:both; */
     margin:0.1em;
     margin-top: 0.3em;
-    }
+}
 
-#globalMenu a
-    {
+#globalMenu a {
     text-align: center;
     display:block;
     border: 1px solid #357A53;
     white-space:nowrap;
     margin:0;
     padding: 0.3em;
-    }
+}
 
-#globalMenu a:link, #globalMenu a:visited, #globalMenu a:active    /* menu at rest */
-    {
+/* un-selected */
+#globalMenu a:link, #globalMenu a:visited, #globalMenu a:active {
     color: white;
     background-color: #025928;      /* Dollar Green */
     text-decoration:none;
-    }
+}
 
-#globalMenu a:hover                      /* menu on mouse-over  */
-    {
+/* on mouse-over  */
+#globalMenu a:hover {
     color: black;
-    background-color: #3C8C30;  /* Lighter greay green */
+    background-color: #3C8C30;  /* Lighter gray green */
     border: 1px solid #357A53;
     text-decoration:none;
-    }
+}
 
-#globalMenu a.top_parent, #globalMenu a.top_parent:hover  /* attaches down-arrow to all top-parents */
-    {
+/* add down-arrow to all top-parents */
+#globalMenu a.top_parent, #globalMenu a.top_parent:hover {
     background-image: url(navdown_white.png);
     background-position: right center;
     background-repeat: no-repeat;
-    }
+}
 
-#globalMenu a.parent, #globalMenu a.parent:hover  /* attaches side-arrow to all parents */
-    {
+/* add side-arrow to all parents */
+#globalMenu a.parent, #globalMenu a.parent:hover {
     background-image: url(nav_white.png);
     background-position: right center;
     background-repeat: no-repeat;
-    }
+}
 
-#globalMenu ul
-    {
+#globalMenu ul {
     list-style:none;
     margin:0;
     padding:0;
@@ -78,36 +75,32 @@
     /* NOTE: For adjustable menu boxes you can comment out the above width rule.
     However, you will have to add padding in the "#menh a" rule so that the menu boxes
     will have space on either side of the text -- try it */
-    }
+}
 
-#globalMenu li
-    {
+#globalMenu li {
     position:relative;
-    min-height: 1px;        /* Sophie Dennis contribution for IE7 */
-    vertical-align: bottom;     /* Sophie Dennis contribution for IE7 */
-    }
+    min-height: 1px;
+    vertical-align: bottom;
+}
 
-#globalMenu ul ul
-    {
+#globalMenu ul ul {
     position:absolute;
     z-index:500;
     top:auto;
     display:none;
     padding: 1em;
     margin:-1em 0 0 -1em;
-    }
+}
 
-#globalMenu ul ul ul
-    {
+#globalMenu ul ul ul {
     top:0;
     left:100%;
-    }
+}
 
-div#globalMenu li:hover
-    {
+div#globalMenu li:hover {
     cursor:pointer;
     z-index:100;
-    }
+}
 
 div#globalMenu li:hover ul ul,
 div#globalMenu li li:hover ul ul,
@@ -122,3 +115,57 @@ div#globalMenu li li li li:hover ul
 {display:block;}
 
 /* End CSS Drop Down Menu */
+
+/* Reset body padding and margins */
+body {
+  margin:0;
+  padding:0;
+}
+
+/* Make Header Sticky */
+#header_container {
+  background:#eee;
+  border:1px solid #666;
+  height:3.0em; /* 60px; */
+  left:0;
+  position:fixed;
+  width:100%;
+  top:0;
+}
+
+#header{
+  line-height:1.5em;
+  margin:0 auto;
+  width:100%; /* 940px; */
+  text-align:left;
+ }
+
+/* CSS for the content of page. I am giving top and bottom padding of 80px
+   to make sure the header and footer do not overlap the content.
+*/
+#container {
+  margin:0 auto;
+  overflow:auto;
+  top:10.0em;
+  width:940px;
+}
+
+#content{}
+
+/* Make Footer Sticky */
+#footer_container {
+  background:#eee;
+  border:1px solid #666;
+  bottom:0;
+  height:60px;
+  left:0;
+  position:fixed;
+  width:100%;
+
+}
+#footer {
+  line-height:60px;
+  margin:0 auto;
+  width:940px;
+  text-align:center;
+}
