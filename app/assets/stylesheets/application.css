@@ -11,59 +11,114 @@
  *= require_self
  *= require_tree .
  */
-#globalMenu,
-#globalMenu ul {
-    list-style: none;
-}
-#globalMenu {
-    float: left;
-}
-#globalMenu > li {
-    float: left;
-}
-#globalMenu li a {
-display: block;
-    height: 2em;
-    line-height: 2em;
-    padding: 0 1.5em;
-    text-decoration: none;
-}
-#globalMenu ul {
+#globalMenu-container
+    {
     position: absolute;
-    display: none;
-z-index: 999;
-}
-#globalMenu ul li a {
-    width: 80px;
-}
-#globalMenu li:hover ul {
-    display: block;
-}
+    top: 0.0em;
+    left: 0.0em;
+    }
 
-/* Main menu
-------------------------------------------*/
-#globalMenu {
-    font-family: Arial;
-    font-size: 12px;
-    background: #ff8be8;
-}
-#globalMenu > li > a {
-    color: #fff;
-    font-weight: bold;
-}
-#globalMenu > li:hover > a {
-    background: #f09d28;
-    color: #000;
-}
+#globalMenu
+    {
+    font-size: medium;
+    font-family: arial, helvetica, sans-serif;
+    width:100%;
+    float:left;
+    clear:both;
+    margin:0.1em;
+    margin-top: 0.3em;
+    }
 
-/* Submenu
-------------------------------------------*/
-#globalMenu ul {
-    background: #f09d28;
-}
-#globalMenu ul li a {
-    color: #000;
-}
-#globalMenu ul li:hover a {
-    background: #ffc97c;
-}
+#globalMenu a
+    {
+    text-align: center;
+    display:block;
+    border: 1px solid #357A53;
+    white-space:nowrap;
+    margin:0;
+    padding: 0.3em;
+    }
+
+#globalMenu a:link, #globalMenu a:visited, #globalMenu a:active    /* menu at rest */
+    {
+    color: white;
+    background-color: #025928;      /* Dollar Green */
+    text-decoration:none;
+    }
+
+#globalMenu a:hover                      /* menu on mouse-over  */
+    {
+    color: black;
+    background-color: #3C8C30;  /* Lighter greay green */
+    border: 1px solid #357A53;
+    text-decoration:none;
+    }
+
+#globalMenu a.top_parent, #globalMenu a.top_parent:hover  /* attaches down-arrow to all top-parents */
+    {
+    background-image: url(navdown_white.png);
+    background-position: right center;
+    background-repeat: no-repeat;
+    }
+
+#globalMenu a.parent, #globalMenu a.parent:hover  /* attaches side-arrow to all parents */
+    {
+    background-image: url(nav_white.png);
+    background-position: right center;
+    background-repeat: no-repeat;
+    }
+
+#globalMenu ul
+    {
+    list-style:none;
+    margin:0;
+    padding:0;
+    float:left;
+    width:9em;  /* width of all menu boxes */
+    /* NOTE: For adjustable menu boxes you can comment out the above width rule.
+    However, you will have to add padding in the "#menh a" rule so that the menu boxes
+    will have space on either side of the text -- try it */
+    }
+
+#globalMenu li
+    {
+    position:relative;
+    min-height: 1px;        /* Sophie Dennis contribution for IE7 */
+    vertical-align: bottom;     /* Sophie Dennis contribution for IE7 */
+    }
+
+#globalMenu ul ul
+    {
+    position:absolute;
+    z-index:500;
+    top:auto;
+    display:none;
+    padding: 1em;
+    margin:-1em 0 0 -1em;
+    }
+
+#globalMenu ul ul ul
+    {
+    top:0;
+    left:100%;
+    }
+
+div#globalMenu li:hover
+    {
+    cursor:pointer;
+    z-index:100;
+    }
+
+div#globalMenu li:hover ul ul,
+div#globalMenu li li:hover ul ul,
+div#globalMenu li li li:hover ul ul,
+div#globalMenu li li li li:hover ul ul
+{display:none;}
+
+div#globalMenu li:hover ul,
+div#globalMenu li li:hover ul,
+div#globalMenu li li li:hover ul,
+div#globalMenu li li li li:hover ul
+{display:block;}
+
+/* End CSS Drop Down Menu */
