@@ -14,7 +14,7 @@
 
 #globalMenu-container {
     /* position: absolute; */
-    top: 4.0em;
+    top: 0.0em;
     left: 0.0em;
 }
 
@@ -26,6 +26,7 @@
     /* clear:both; */
     margin:0.1em;
     margin-top: 0.3em;
+    border: 1px solid #000000;
 }
 
 #globalMenu a {
@@ -124,9 +125,8 @@ body {
 
 /* Make Header Sticky */
 #header_container {
-  background:#eee;
-  border:1px solid #666;
-  height:3.0em; /* 60px; */
+  background:#3C8C30;
+  border:1px solid #000000;
   left:0;
   position:fixed;
   width:100%;
@@ -140,17 +140,17 @@ body {
   text-align:left;
  }
 
-/* CSS for the content of page. I am giving top and bottom padding of 80px
-   to make sure the header and footer do not overlap the content.
-*/
+/* CSS for the content of page. */
 #container {
-  margin:0 auto;
+  margin:5.0em auto;
   overflow:auto;
-  top:10.0em;
-  width:940px;
+  /* top:20.0em; */
+  width:100%;
 }
 
-#content{}
+#content{
+  margin-left: 10px
+}
 
 /* Make Footer Sticky */
 #footer_container {
