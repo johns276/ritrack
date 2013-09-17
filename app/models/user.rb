@@ -60,6 +60,9 @@ class User < ActiveRecord::Base
   has_many  :tasks, inverse_of: :user
   validates_associated :tasks
 
+  validates :password, length: { minimum: 8 }, if: :validate_password?
+  validates :password_confirmation, presence: true, if: :validate_password?
+
   private
 
   def no_end_date_without_start_date
@@ -72,6 +75,10 @@ class User < ActiveRecord::Base
     if end_date != nil && start_date != nil && end_date < start_date
       errors.add(:end_date, "cannot be less than the start date")
     end
+  end
+
+  def validate_password?
+    password.present? || password_confirmation.present?
   end
 
 end

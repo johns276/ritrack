@@ -125,6 +125,8 @@ class TicketTest < ActiveSupport::TestCase
     should 'retrieve its user' do
       user = @ticket.user
       assert user.nil? == false
+      # user.password = "12345678"
+      # user.password_confirmation = "12345678"
       assert user.valid? == true
     end
 
@@ -157,6 +159,8 @@ class TicketTest < ActiveSupport::TestCase
     should 'retrieve its requestor' do
       requestor = @ticket.requestor
       assert requestor.nil? == false
+      requestor.password = "12345678"
+      requestor.password_confirmation = "12345678"
       assert requestor.valid? == true
     end
 

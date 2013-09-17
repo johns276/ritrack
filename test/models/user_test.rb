@@ -33,7 +33,25 @@ class UserTest < ActiveSupport::TestCase
     end
 
     should 'be valid initially' do
+      @user.password = "12345678"
+      @user.password_confirmation = "12345678"
       assert @user.valid?
+    end
+
+    should 'respond to all of its components' do
+      assert @user.respond_to?(:first_name) == true
+      assert @user.respond_to?(:last_name) == true
+      assert @user.respond_to?(:nick_name) == true
+      assert @user.respond_to?(:login_name) == true
+      assert @user.respond_to?(:notes) == true
+      assert @user.respond_to?(:created_at) == true
+      assert @user.respond_to?(:updated_at) == true
+      assert @user.respond_to?(:start_date) == true
+      assert @user.respond_to?(:end_date) == true
+      assert @user.respond_to?(:is_admin) == true
+      assert @user.respond_to?(:can_login) == true
+      assert @user.respond_to?(:user_by_email) == true
+      assert @user.respond_to?(:password_digest) == true
     end
 
     should 'not be valid if first name is nil' do
@@ -55,8 +73,7 @@ class UserTest < ActiveSupport::TestCase
     end
 
     should 'not be valid if first name is too long' do
-      name = 'a' * 255
-      @user.first_name = 'A' + name
+      @user.first_name = 'A' + ('a' * 255)
       @user.valid?
       assert @user.errors[:first_name].any? == true
     end
@@ -116,11 +133,45 @@ class UserTest < ActiveSupport::TestCase
     end
 
     should 'not be valid if login name is too long' do
-      name = 'a' * 255
-      assert name.size == 255
-      @user.login_name = name
+      @user.login_name = 'a' * 255
       @user.valid?
       assert @user.errors[:login_name].any? == true
+    end
+
+    should 'not be valid without a password confirmation' do
+      @user.password = "password"
+      @user.password_confirmation = nil
+      @user.valid?
+      assert @user.errors[:password_confirmation].any? == true
+    end
+
+    should 'not be valid with a blank password confirmation' do
+      @user.password = "password"
+      @user.password_confirmation = " "
+      @user.valid?
+      assert @user.errors[:password_confirmation].any? == true
+    end
+
+    should 'not be valid if password does not match its confirmation' do
+      @user.password = "good_password"
+      @user.password_confirmation = "bad_password"
+      @user.valid?
+      assert @user.errors[:password_confirmation].any? == true
+    end
+
+    should 'not be valid if password is too short' do
+      @user.password = "1234567"
+      @user.password_confirmation = "1234567"
+      @user.valid?
+      assert @user.errors[:password].any? == true
+    end
+
+    should 'not authenticate with incorrect password' do
+      assert @user.authenticate("bad_password") == false
+      @user.password = "good_password"
+      @user.password_confirmation = "good_password"
+      @user.save
+      assert @user.authenticate("good_password") == @user
     end
 
     should 'require a start date if an end date is present' do
@@ -157,6 +208,9 @@ class UserTest < ActiveSupport::TestCase
       phone.tag = 'Home'
       assert phone.new_record? == true
       @user.phones << phone
+      @user.password = "12345678"
+      @user.password_confirmation = "12345678"
+      # p @user.errors
       assert @user.save == true
       assert @user.phones.size > 2
       assert phone.new_record? == false
@@ -192,10 +246,6 @@ class UserTest < ActiveSupport::TestCase
     should 'find all the observed tickets' do
       ticket_observers = @user.ticket_observers
       assert ticket_observers.size > 0
-      ticket_observers.each do |to|
-        ticket = Ticket.find(to.ticket_id)
-        assert ticket.valid?
-      end
     end
 
     should 'retrieve all tasks, if there are any' do
@@ -224,8 +274,24 @@ class UserTest < ActiveSupport::TestCase
       @user = User.new()
     end
 
-    should 'be valid initially' do
+    should 'not be valid initially' do
       assert @user.valid? == false
+    end
+
+    should 'respond to all of its components' do
+      assert @user.respond_to?(:first_name) == true
+      assert @user.respond_to?(:last_name) == true
+      assert @user.respond_to?(:nick_name) == true
+      assert @user.respond_to?(:login_name) == true
+      assert @user.respond_to?(:notes) == true
+      assert @user.respond_to?(:created_at) == true
+      assert @user.respond_to?(:updated_at) == true
+      assert @user.respond_to?(:start_date) == true
+      assert @user.respond_to?(:end_date) == true
+      assert @user.respond_to?(:is_admin) == true
+      assert @user.respond_to?(:can_login) == true
+      assert @user.respond_to?(:user_by_email) == true
+      assert @user.respond_to?(:password_digest) == true
     end
 
     should 'not be valid if first name is nil' do
@@ -247,9 +313,7 @@ class UserTest < ActiveSupport::TestCase
     end
 
     should 'not be valid if first name is too long' do
-      name = 'Aa'
-      (1..256).each {|n| name = name + 'bb'}
-      @user.first_name = name
+      @user.first_name = 'Aa' + ('b' * 254)
       @user.valid?
       assert @user.errors[:first_name].any? == true
     end
@@ -267,9 +331,7 @@ class UserTest < ActiveSupport::TestCase
     end
 
     should 'not be valid if last name is too long' do
-      name = 'Aa'
-      (1..256).each {|n| name = name + 'bb'}
-      @user.last_name = name
+      @user.last_name = 'Aa' + ('b' * 254)
       @user.valid?
       assert @user.errors[:last_name].any? == true
     end
@@ -306,12 +368,44 @@ class UserTest < ActiveSupport::TestCase
     end
 
     should 'not be valid if login name is too long' do
-      name = 'a'
-      (1..254).each {|n| name = name + 'b'}
-      assert name.size == 255
-      @user.login_name = name
+      @user.login_name = 'a' + ('b' * 255)
       @user.valid?
       assert @user.errors[:login_name].any? == true
+    end
+
+    should 'not be valid without a password' do
+      @user.password = nil
+      @user.password_confirmation = nil
+      @user.valid?
+      assert @user.errors[:password].any? == true
+    end
+
+    should 'not be valid with a blank password' do
+      @user.password = " "
+      @user.password_confirmation = " "
+      @user.valid?
+      assert @user.errors[:password].any? == true
+    end
+
+    should 'not be valid without a password confirmation' do
+      @user.password = "password"
+      @user.password_confirmation = nil
+      @user.valid?
+      assert @user.errors[:password_confirmation].any? == true
+    end
+
+    should 'not be valid with a blank password confirmation' do
+      @user.password = "password"
+      @user.password_confirmation = " "
+      @user.valid?
+      assert @user.errors[:password_confirmation].any? == true
+    end
+
+    should 'not be valid if password does not match its confirmation' do
+      @user.password = "good_password"
+      @user.password_confirmation = "bad_password"
+      @user.valid?
+      assert @user.errors[:password_confirmation].any? == true
     end
 
     should 'require a start date if an end date is present' do
