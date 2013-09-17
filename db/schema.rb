@@ -133,9 +133,9 @@ ActiveRecord::Schema.define(version: 20130909134554) do
     t.datetime "updated_at"
     t.date     "start_date"
     t.date     "end_date"
-    t.boolean  "is_admin",        default: false
-    t.boolean  "can_login",       default: false
-    t.boolean  "user_by_email",   default: true
+    t.boolean  "is_admin"
+    t.boolean  "can_login"
+    t.boolean  "user_by_email"
     t.string   "password_digest"
   end
 

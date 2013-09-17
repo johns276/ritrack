@@ -2,22 +2,25 @@
 #
 # Table name: users
 #
-#  id            :integer          not null, primary key
-#  first_name    :string(255)
-#  last_name     :string(255)
-#  nick_name     :string(255)
-#  login_name    :string(255)
-#  notes         :text
-#  created_at    :datetime
-#  updated_at    :datetime
-#  start_date    :date
-#  end_date      :date
-#  is_admin      :boolean          default(FALSE)
-#  can_login     :boolean          default(FALSE)
-#  user_by_email :boolean          default(TRUE)
+#  id              :integer          not null, primary key
+#  first_name      :string(255)
+#  last_name       :string(255)
+#  nick_name       :string(255)
+#  login_name      :string(255)
+#  notes           :text
+#  created_at      :datetime
+#  updated_at      :datetime
+#  start_date      :date
+#  end_date        :date
+#  is_admin        :boolean
+#  can_login       :boolean
+#  user_by_email   :boolean
+#  password_digest :string(255)
 #
 
 class User < ActiveRecord::Base
+
+  has_secure_password
 
   validates :first_name, presence: true, format: {with: /\A[A-Z][a-z]+\z/}
   validates :first_name, length: { minimum: 2 }
@@ -34,6 +37,8 @@ class User < ActiveRecord::Base
   validates :login_name, length: { maximum: 254 }
 
   validates :start_date, presence: true
+
+  validates :password_digest, presence: true
 
   validate  :no_end_date_without_start_date
   validate  :start_date_must_precede_end_date
@@ -54,7 +59,6 @@ class User < ActiveRecord::Base
 
   has_many  :tasks, inverse_of: :user
   validates_associated :tasks
-
 
   private
 
