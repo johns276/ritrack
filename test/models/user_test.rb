@@ -33,8 +33,6 @@ class UserTest < ActiveSupport::TestCase
     end
 
     should 'be valid initially' do
-      @user.password = "12345678"
-      @user.password_confirmation = "12345678"
       assert @user.valid?
     end
 
@@ -208,8 +206,6 @@ class UserTest < ActiveSupport::TestCase
       phone.tag = 'Home'
       assert phone.new_record? == true
       @user.phones << phone
-      @user.password = "12345678"
-      @user.password_confirmation = "12345678"
       # p @user.errors
       assert @user.save == true
       assert @user.phones.size > 2
