@@ -59,7 +59,10 @@ class User < ActiveRecord::Base
   has_many  :tasks, inverse_of: :user
   validates_associated :tasks
 
-  validates :password, length: { minimum: 8 }, if: :validate_password?
+  validates :password,
+        format: {with: /\A((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%_-]).{8,255})\z/},
+        length: { minimum: 8, maximum: 255 }, if: :validate_password?
+
   validates :password_confirmation, presence: true, if: :validate_password?
 
   private

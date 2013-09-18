@@ -137,39 +137,60 @@ class UserTest < ActiveSupport::TestCase
     end
 
     should 'not be valid without a password confirmation' do
-      @user.password = "password"
+      @user.password = "Password1-"
       @user.password_confirmation = nil
       @user.valid?
       assert @user.errors[:password_confirmation].any? == true
     end
 
     should 'not be valid with a blank password confirmation' do
-      @user.password = "password"
+      @user.password = "Password1-"
       @user.password_confirmation = " "
       @user.valid?
       assert @user.errors[:password_confirmation].any? == true
     end
 
     should 'not be valid if password does not match its confirmation' do
-      @user.password = "good_password"
-      @user.password_confirmation = "bad_password"
+      @user.password = "Password1-good"
+      @user.password_confirmation = "Password1-bad"
       @user.valid?
       assert @user.errors[:password_confirmation].any? == true
     end
 
     should 'not be valid if password is too short' do
-      @user.password = "1234567"
-      @user.password_confirmation = "1234567"
+      @user.password = "Pasrd1-"
+      @user.password_confirmation = "Pasrd1-"
       @user.valid?
       assert @user.errors[:password].any? == true
     end
 
+    should 'not be valid if password is too long' do
+      @user.password = "Password1-" + ("a" * 246)
+      @user.password_confirmation = "Password1-" + ("a" * 246)
+      @user.valid?
+      assert @user.errors[:password].any? == true
+    end
+
+    should 'not be valid if password format is incorrect' do
+      @user.password = "Password"
+      @user.password_confirmation = "Password"
+      @user.valid?
+      assert @user.errors[:password].any? == true
+    end
+
+    should 'be valid if password format is correct' do
+      @user.password = "Password1-"
+      @user.password_confirmation = "Password1-"
+      @user.valid?
+      assert @user.errors[:password].any? == false
+    end
+
     should 'not authenticate with incorrect password' do
-      assert @user.authenticate("bad_password") == false
-      @user.password = "good_password"
-      @user.password_confirmation = "good_password"
+      assert @user.authenticate("Password1-bad") == false
+      @user.password = "Password1-good"
+      @user.password_confirmation = "Password1-good"
       @user.save
-      assert @user.authenticate("good_password") == @user
+      assert @user.authenticate("Password1-good") == @user
     end
 
     should 'require a start date if an end date is present' do
@@ -206,7 +227,6 @@ class UserTest < ActiveSupport::TestCase
       phone.tag = 'Home'
       assert phone.new_record? == true
       @user.phones << phone
-      # p @user.errors
       assert @user.save == true
       assert @user.phones.size > 2
       assert phone.new_record? == false
@@ -384,22 +404,22 @@ class UserTest < ActiveSupport::TestCase
     end
 
     should 'not be valid without a password confirmation' do
-      @user.password = "password"
+      @user.password = "Password1-"
       @user.password_confirmation = nil
       @user.valid?
       assert @user.errors[:password_confirmation].any? == true
     end
 
     should 'not be valid with a blank password confirmation' do
-      @user.password = "password"
+      @user.password = "Password1-"
       @user.password_confirmation = " "
       @user.valid?
       assert @user.errors[:password_confirmation].any? == true
     end
 
     should 'not be valid if password does not match its confirmation' do
-      @user.password = "good_password"
-      @user.password_confirmation = "bad_password"
+      @user.password = "Password1-good"
+      @user.password_confirmation = "Password1-bad"
       @user.valid?
       assert @user.errors[:password_confirmation].any? == true
     end

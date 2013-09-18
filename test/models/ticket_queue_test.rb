@@ -16,7 +16,8 @@ class TicketQueueTest < ActiveSupport::TestCase
   context 'A given ticket queue' do
 
     setup do
-      @ticket_queue = TicketQueue.first
+      # @ticket_queue = TicketQueue.first
+      @ticket_queue = ticket_queues(:one)
     end
 
     should 'require a start date if an end date is present' do

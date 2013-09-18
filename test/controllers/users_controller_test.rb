@@ -18,7 +18,32 @@ class UsersControllerTest < ActionController::TestCase
 
   test "should create user" do
     assert_difference('User.count') do
-      post :create, user: { first_name: @user.first_name, last_name_string: @user.last_name_string, login_name: @user.login_name, nick_name: @user.nick_name, notes: @user.notes }
+      user = User.new
+      user.first_name = "Henry"
+      user.last_name = "Aaron"
+      user.login_name = "aaronhc"
+      user.nick_name = "Hank"
+      user.notes = "This is a note"
+      user.start_date = Date.today
+      user.end_date = nil
+      user.is_admin = true
+      user.can_login = true
+      user.user_by_email = true
+      user.password = "Password_1"
+      user.password_confirmation = user.password
+      user.valid?
+      p user.errors
+      post :create, user: { first_name: user.first_name,
+                            last_name: user.last_name,
+                            login_name: user.login_name,
+                            nick_name: user.nick_name,
+                            notes: user.notes,
+                            start_date: user.start_date,
+                            end_date: user.end_date,
+                            is_admin: user.is_admin,
+                            can_login: user.can_login,
+                            user_by_email: user.user_by_email,
+                            password_digest: user.password_digest }
     end
 
     assert_redirected_to user_path(assigns(:user))
@@ -35,7 +60,7 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   test "should update user" do
-    patch :update, id: @user, user: { first_name: @user.first_name, last_name_string: @user.last_name_string, login_name: @user.login_name, nick_name: @user.nick_name, notes: @user.notes }
+    patch :update, id: @user, user: { first_name: @user.first_name, last_name: @user.last_name, login_name: @user.login_name, nick_name: @user.nick_name, notes: @user.notes }
     assert_redirected_to user_path(assigns(:user))
   end
 

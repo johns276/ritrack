@@ -132,6 +132,9 @@ class TicketTest < ActiveSupport::TestCase
       observers = @ticket.ticket_observers
       assert observers.nil? == false
       assert observers.size > 0
+      observers.each do |observer|
+        assert observer.valid? == true
+      end
       users = @ticket.users
       user = @ticket.user
       assert users.size == 4
