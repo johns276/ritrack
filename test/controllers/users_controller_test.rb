@@ -30,9 +30,8 @@ class UsersControllerTest < ActionController::TestCase
       user.can_login = true
       user.user_by_email = true
       user.password = "Password_1"
-      user.password_confirmation = user.password
-      user.valid?
-      p user.errors
+      user.password_confirmation = "Password_1"
+
       post :create, user: { first_name: user.first_name,
                             last_name: user.last_name,
                             login_name: user.login_name,
@@ -43,6 +42,8 @@ class UsersControllerTest < ActionController::TestCase
                             is_admin: user.is_admin,
                             can_login: user.can_login,
                             user_by_email: user.user_by_email,
+                            password: user.password,
+                            password_confirmation: user.password_confirmation,
                             password_digest: user.password_digest }
     end
 

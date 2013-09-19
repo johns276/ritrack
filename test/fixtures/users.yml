@@ -32,7 +32,7 @@ one:
   is_admin: true
   can_login: true
   user_by_email: true
-  password_digest: $2a$04$.ZivFDJONyHRTMA00A4UhO6XnFCe1gOB7wqP/KAMnCHdkvXrbFO/W
+  password_digest: <%= BCrypt::Password.create('Password_1') %>
 
 two:
   id: 2
@@ -46,7 +46,7 @@ two:
   is_admin: true
   can_login: true
   user_by_email: true
-  password_digest: $2a$04$.ZivFDJONyHRTMA00A4UhO6XnFCe1gOB7wqP/KAMnCHdkvXrbFO/W
+  password_digest: <%= BCrypt::Password.create('Password_2') %>
 
 three:
   id: 3
@@ -60,7 +60,7 @@ three:
   is_admin: false
   can_login: true
   user_by_email: true
-  password_digest: $2a$04$.ZivFDJONyHRTMA00A4UhO6XnFCe1gOB7wqP/KAMnCHdkvXrbFO/W
+  password_digest: <%= BCrypt::Password.create('Password_3') %>
 
 four:
   id: 4
@@ -74,7 +74,7 @@ four:
   is_admin: false
   can_login: true
   user_by_email: true
-  password_digest: $2a$04$.ZivFDJONyHRTMA00A4UhO6XnFCe1gOB7wqP/KAMnCHdkvXrbFO/W
+  password_digest: <%= BCrypt::Password.create('Password_4') %>
 
 five:
   id: 5
@@ -88,7 +88,7 @@ five:
   is_admin: false
   can_login: false
   user_by_email: true
-  password_digest: $2a$04$.ZivFDJONyHRTMA00A4UhO6XnFCe1gOB7wqP/KAMnCHdkvXrbFO/W
+  password_digest: <%= BCrypt::Password.create('Password_5') %>
 
 six:
   id: 6
@@ -102,4 +102,4 @@ six:
   is_admin: false
   can_login: false
   user_by_email: true
-  password_digest: $2a$04$.ZivFDJONyHRTMA00A4UhO6XnFCe1gOB7wqP/KAMnCHdkvXrbFO/W
+  password_digest: <%= BCrypt::Password.create('Password_6') %>

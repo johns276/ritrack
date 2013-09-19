@@ -7,6 +7,7 @@
 # RAILS files #
 ###############
 /log/*.log
+log/*.log
 /tmp
 log/*
 log/
@@ -30,7 +31,6 @@ spec/reports
 test/tmp
 test/version_tmp
 tmp
-ritrack.sublime-workspace
 Gemfile.lock
 config/database.yaml
 log/test.log
