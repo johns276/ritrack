@@ -34,5 +34,6 @@ tmp
 Gemfile.lock
 config/database.yaml
 log/test.log
+log/development.log
 ritrack.sublime-workspace
 ritrack.sublime-project
