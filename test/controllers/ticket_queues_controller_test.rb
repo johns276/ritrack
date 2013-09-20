@@ -5,15 +5,24 @@ class TicketQueuesControllerTest < ActionController::TestCase
     @ticket_queue = ticket_queues(:one)
   end
 
-  should "get index" do
-    get :index
-    assert_response :success
-    assert_not_nil assigns(:ticket_queues)
+  context "on GET to :index for ticket queue list" do
+    setup do
+      get :index
+    end
+    should respond_with :success
+    should render_template :index
+    should render_template(partial: false)
+    should route(:get, '/ticket_queues').to(:controller => :ticket_queues, :action => :index)
   end
 
-  should "get new" do
-    get :new
-    assert_response :success
+  context 'on GET to :new for a new ticket queue' do
+    setup do
+      get :new
+    end
+    should route(:get, '/ticket_queues/new').to(:action => :new)
+    should respond_with :success
+    should render_template :new
+    should render_template(partial: '_form')
   end
 
   should "create ticket_queue" do
@@ -23,11 +32,6 @@ class TicketQueuesControllerTest < ActionController::TestCase
     end
 
     assert_redirected_to ticket_queue_path(assigns(:ticket_queue))
-  end
-
-  should "show ticket_queue" do
-    get :show, id: @ticket_queue
-    assert_response :success
   end
 
   should "get edit" do
@@ -49,18 +53,14 @@ class TicketQueuesControllerTest < ActionController::TestCase
   end
 
   context "on GET to :show for first record" do
+
     setup do
       get :show, :id => 1
     end
 
-    # should assign_to :ticket_queue
     should respond_with :success
     should render_template :show
-    # should_not set_the_flash
-
-    should "do something else really cool" do
-      assert_equal 1, assigns(:ticket_queue).id
-    end
+    should route(:get, '/ticket_queues/1').to(:action => :show, :id => 1)
   end
 
 end
