@@ -16,10 +16,10 @@ class TaskTest < ActiveSupport::TestCase
   context 'A given task' do
 
     setup do
-      @task = Task.first()
+      @task = tasks(:one)
     end
 
-    should 'not be valid if subject is invalid' do
+    should 'have a valid subject' do
       @task.subject = ''
       @task.valid?
       assert @task.errors[:subject].any? == true
@@ -34,7 +34,7 @@ class TaskTest < ActiveSupport::TestCase
       assert @task.errors[:subject].any? == false
     end
 
-    should 'not be valid if note is invalid' do
+    should 'have a valid note' do
       @task.note = ''
       @task.valid?
       assert @task.errors[:note].any? == true
@@ -62,6 +62,56 @@ class TaskTest < ActiveSupport::TestCase
       assert_equal @task.errors[:end_date].join(';'), "cannot be less than the start date"
     end
 
-  end
+  end # a given task
+
+  context 'A new task' do
+
+    setup do
+      @task = Task.new
+    end
+
+    should 'have a valid subject' do
+      @task.valid?
+      @task.errors[:subject].any? == true
+      @task.subject = 'A Su'
+      @task.valid?
+      @task.errors[:subject].any? == true
+      @task.subject = 'A' * 256
+      @task.subject = 'A Subject'
+      @task.valid?
+      @task.errors[:subject].any? == true
+      @task.subject = 'A Subject'
+      @task.valid?
+      @task.errors[:subject].any? == false
+    end
+
+    should 'have a valid note' do
+      @task.valid?
+      assert @task.errors[:note].any? == true
+      @task.note = 'a'
+      @task.valid?
+      assert @task.errors[:note].any? == true
+      @task.note = 'This is a note.'
+      @task.valid?
+      assert @task.errors[:note].any? == false
+    end
+
+    should 'require a start date if an end date is present' do
+      @task.start_date = nil
+      @task.end_date = Date.today()
+      @task.valid?
+      assert @task.errors[:end_date].any? == true
+      assert_equal @task.errors[:end_date].join(';'), "requires a start date"
+    end
+
+    should 'require an end date on or after start date' do
+      @task.start_date = Date.today
+      @task.end_date = Date.today - 1.day
+      @task.valid?
+      assert @task.errors[:end_date].any? == true
+      assert_equal @task.errors[:end_date].join(';'), "cannot be less than the start date"
+    end
+
+  end # a new task
 
 end

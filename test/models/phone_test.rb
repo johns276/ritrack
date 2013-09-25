@@ -92,6 +92,16 @@ class PhoneTest < ActiveSupport::TestCase
       assert @phone.errors[:number].any? == false
     end
 
+    should 'require a valid tag' do
+      assert @phone.valid? == true
+      @phone.tag = 'tag'
+      @phone.valid?
+      assert @phone.errors[:tag].any? == true
+      @phone.tag = 'Home'
+      assert @phone.valid?
+      assert @phone.errors[:tag].any? == false
+    end
+
     should 'require a user_id' do
       @phone.user_id = nil
       @phone.valid?
@@ -161,6 +171,16 @@ class PhoneTest < ActiveSupport::TestCase
       @phone.valid?
       assert @phone.errors[:number].any? == true
       assert_equal @phone.errors[:number].join(';'), "doesn't look like a valid North American or International phone number"
+    end
+
+    should 'require a valid tag' do
+      assert @phone.valid? == false
+      @phone.tag = 'tag'
+      @phone.valid?
+      assert @phone.errors[:tag].any? == true
+      @phone.tag = 'Home'
+      @phone.valid?
+      assert @phone.errors[:tag].any? == false
     end
 
     should 'not be savable without being fully valid' do

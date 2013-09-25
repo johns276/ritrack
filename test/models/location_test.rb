@@ -23,7 +23,7 @@ class LocationTest < ActiveSupport::TestCase
   context 'A given Location' do
 
     setup do
-      @location = Location.first()
+      @location = locations(:one)
     end
 
     should 'require a valid comany if comapny is specified' do
@@ -60,6 +60,21 @@ class LocationTest < ActiveSupport::TestCase
       @location.zip = nil
       assert @location.valid? == false
       assert @location.errors[:zip].any? == true
+    end
+
+    should 'not be valid with invalid zip' do
+      @location.zip = '9201'
+      assert @location.valid? == false
+      assert @location.errors[:zip].any? == true
+      @location.zip = '92040'
+      assert @location.valid? == true
+      assert @location.errors[:zip].any? == false
+      @location.zip = '92040-112'
+      assert @location.valid? == false
+      assert @location.errors[:zip].any? == true
+      @location.zip = '92040-4432'
+      assert @location.valid? == true
+      assert @location.errors[:zip].any? == false
     end
 
     should 'not be valid if adddress2 is specified and address1 is not' do
@@ -115,6 +130,21 @@ class LocationTest < ActiveSupport::TestCase
       @location.zip = nil
       @location.valid?
       assert @location.errors[:zip].any? == true
+    end
+
+    should 'not be valid with invalid zip' do
+      @location.zip = '9201'
+      @location.valid?
+      assert @location.errors[:zip].any? == true
+      @location.zip = '92040'
+      @location.valid?
+      assert @location.errors[:zip].any? == false
+      @location.zip = '92040-112'
+      @location.valid?
+      assert @location.errors[:zip].any? == true
+      @location.zip = '92040-4432'
+      @location.valid?
+      assert @location.errors[:zip].any? == false
     end
 
     should 'not be valid if adddress2 is specified and address1 is not' do

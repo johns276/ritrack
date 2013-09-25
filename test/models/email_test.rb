@@ -45,6 +45,14 @@ class EmailTest < ActiveSupport::TestCase
       assert dupemail.errors[:address].any? == false
     end
 
+    should 'require email is downcased when saved' do
+      @email.address = 'Fred.Lockert@Gmail.Com'
+      @email.save
+      assert @email.valid? == true
+      @email = Email.first
+      assert @email.address == 'fred.lockert@gmail.com'
+    end
+
     should 'require a start date if an end date is present' do
       @email.start_date = nil
       @email.end_date = Date.today()
