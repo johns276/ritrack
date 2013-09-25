@@ -91,7 +91,7 @@ class EmailTest < ActiveSupport::TestCase
       assert assert @email.errors[:address].any? == false
     end
 
-    should 'not allow saving a duplicate email address' do
+    should 'not save a duplicate email address' do
       @email.address = 'charles@mexico.mx'
       @email.start_date = Date.today()
       @email.user_id = 1
@@ -129,6 +129,6 @@ class EmailTest < ActiveSupport::TestCase
       assert_equal @email.errors[:end_date].join(';'), "cannot be less than the start date"
     end
 
-  end #a new email
+  end # a new email
 
 end

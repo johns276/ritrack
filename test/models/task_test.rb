@@ -46,6 +46,18 @@ class TaskTest < ActiveSupport::TestCase
       assert @task.errors[:note].any? == false
     end
 
+    should 'have a valid user' do
+      assert @task.valid? == true
+      user = @task.user
+      assert user.valid? == true
+    end
+
+    should 'have a valid ticket' do
+      assert @task.valid? == true
+      ticket = @task.ticket
+      assert ticket.valid? == true
+    end
+
     should 'require a start date if an end date is present' do
       @task.start_date = nil
       @task.end_date = Date.today()
@@ -110,6 +122,18 @@ class TaskTest < ActiveSupport::TestCase
       @task.valid?
       assert @task.errors[:end_date].any? == true
       assert_equal @task.errors[:end_date].join(';'), "cannot be less than the start date"
+    end
+
+    should 'be valid with a full data set' do
+      user = users(:one)
+      ticket = tickets(:one)
+      @task.subject = 'A Subject'
+      @task.note = 'A note for this task'
+      @task.start_date = Date.today()
+      @task.end_date = nil
+      user.tasks << @task
+      ticket.tasks << @task
+      assert @task.valid? == true
     end
 
   end # a new task

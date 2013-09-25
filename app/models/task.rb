@@ -28,8 +28,8 @@ class Task < ActiveRecord::Base
   validate :no_end_date_without_start_date
   validate :start_date_must_precede_end_date
 
-  belongs_to :ticket
-  belongs_to :user
+  belongs_to :ticket, validate: true
+  belongs_to :user, validate: true
 
   private
 
