@@ -21,7 +21,10 @@ class TicketObserver < ActiveRecord::Base
   validate  :start_date_must_precede_end_date
 
   belongs_to :user
+  validates :user, presence: true
+
   belongs_to :ticket
+  validates :ticket, presence: true
 
   private
 
