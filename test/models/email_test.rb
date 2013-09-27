@@ -25,7 +25,7 @@ class EmailTest < ActiveSupport::TestCase
       assert @email.errors.any? == false
     end
 
-    should 'not be valid with an new but invalid address' do
+    should 'require a valid address' do
       @email.address = 'david.groote@holland'
       @email.valid?
       assert assert @email.errors[:address].any? == true
@@ -34,7 +34,7 @@ class EmailTest < ActiveSupport::TestCase
       assert assert @email.errors[:address].any? == false
     end
 
-    should 'not allow saving a duplicate email address' do
+    should 'prohibit a duplicate email address' do
       dupemail = @email.dup
       dupemail.save
       dupemail.valid?
@@ -45,7 +45,7 @@ class EmailTest < ActiveSupport::TestCase
       assert dupemail.errors[:address].any? == false
     end
 
-    should 'require email is downcased when saved' do
+    should 'require a downcased email' do
       @email.address = 'Fred.Lockert@Gmail.Com'
       @email.save
       assert @email.valid? == true
@@ -77,12 +77,12 @@ class EmailTest < ActiveSupport::TestCase
       @email = Email.new()
     end
 
-    should 'not initially be valid' do
+    should 'initially be invalid' do
       @email.valid?
       assert @email.errors.any? == true
     end
 
-    should 'not be valid with an new but invalid address' do
+    should 'require a valid address' do
       @email.address = 'david.groote@holland'
       @email.valid?
       assert assert @email.errors[:address].any? == true
@@ -91,7 +91,7 @@ class EmailTest < ActiveSupport::TestCase
       assert assert @email.errors[:address].any? == false
     end
 
-    should 'not save a duplicate email address' do
+    should 'prohibit a duplicate email address' do
       @email.address = 'charles@mexico.mx'
       @email.start_date = Date.today()
       @email.user_id = 1

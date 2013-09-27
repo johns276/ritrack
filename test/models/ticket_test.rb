@@ -42,7 +42,7 @@ class TicketTest < ActiveSupport::TestCase
       @ticket = Ticket.first()
     end
 
-    should 'not be valid if subject is invalid' do
+    should 'require a valid subject' do
       @ticket.subject = ''
       @ticket.valid?
       assert @ticket.errors[:subject].any? == true
@@ -57,13 +57,13 @@ class TicketTest < ActiveSupport::TestCase
       assert @ticket.errors[:subject].any? == false
     end
 
-    should 'not be valid with an invalid status' do
+    should 'require a valid status' do
       @ticket.status = 'Dropped'
       @ticket.valid?
       assert @ticket.errors[:status].any? == true
     end
 
-    should 'not be valid with an invalid priority' do
+    should 'require a valid priority' do
       @ticket.priority = 0
       @ticket.valid?
       assert @ticket.errors[:priority].any? == true
@@ -72,7 +72,7 @@ class TicketTest < ActiveSupport::TestCase
       assert @ticket.errors[:priority].any? == true
     end
 
-    should 'not be valid without a start_date' do
+    should 'require a start_date' do
       @ticket.start_date = nil
       @ticket.valid?
       assert @ticket.errors[:start_date].any? == true
@@ -94,19 +94,19 @@ class TicketTest < ActiveSupport::TestCase
       assert_equal @ticket.errors[:end_date].join(';'), "cannot be less than the start date"
     end
 
-    should 'not be valid without a ticket_queue' do
+    should 'require a ticket_queue' do
       @ticket.ticket_queue = nil
       @ticket.valid?
       assert @ticket.errors[:ticket_queue].any? == true
     end
 
-    should 'not be valid without a user' do
+    should 'require a user' do
       @ticket.user = nil
       @ticket.valid?
       assert @ticket.errors[:user].any? == true
     end
 
-    should 'not be valid without a valid user' do
+    should 'require a valid user' do
       user = User.new()
       assert user.valid? == false
       user.id = 16384
@@ -141,13 +141,13 @@ class TicketTest < ActiveSupport::TestCase
       assert user.nil? == false
     end
 
-    should 'not be valid without a requestor' do
+    should 'require a requestor' do
       @ticket.requestor = nil
       @ticket.valid?
       assert @ticket.errors[:requestor_id].any? == true
     end
 
-    should 'not be valid without a valid requestor' do
+    should 'require a valid requestor' do
       user = User.new()
       assert user.valid? == false
       user.id = 16384
@@ -169,7 +169,7 @@ class TicketTest < ActiveSupport::TestCase
       assert tasks.size > 0
     end
 
-    should 'not allow an invalid task' do
+    should 'require a valid task' do
       task = Task.new()
       task.start_date = Date.today()
       task.note = 'This is a note.'
@@ -193,12 +193,102 @@ class TicketTest < ActiveSupport::TestCase
       assert @ticket.valid? == false
     end
 
-    should 'not be valid without belonging to a queue' do
-      ticket_queue = TicketQueue.first()
-      ticket_queue.tickets << @ticket
+    should 'require a valid subject' do
+      @ticket.subject = ''
+      @ticket.valid?
+      assert @ticket.errors[:subject].any? == true
+      @ticket.subject = 'a'
+      @ticket.valid?
+      assert @ticket.errors[:subject].any? == true
+      @ticket.subject = 'a' * 256
+      @ticket.valid?
+      assert @ticket.errors[:subject].any? == true
+      @ticket.subject = 'Subject'
+      @ticket.valid?
+      assert @ticket.errors[:subject].any? == false
+    end
+
+    should 'require a valid status' do
+      @ticket.status = 'Dropped'
+      @ticket.valid?
+      assert @ticket.errors[:status].any? == true
+    end
+
+    should 'require a valid priority' do
+      @ticket.priority = 0
+      @ticket.valid?
+      assert @ticket.errors[:priority].any? == true
+      @ticket.priority = 26
+      @ticket.valid?
+      assert @ticket.errors[:priority].any? == true
+      @ticket.priority = 25
+      @ticket.valid?
+      assert @ticket.errors[:priority].any? == false
+    end
+
+    should 'require a start_date' do
+      @ticket.valid?
+      assert @ticket.errors[:start_date].any? == true
+      @ticket.start_date = Date.today()
+      @ticket.valid?
+      assert @ticket.errors[:start_date].any? == false
+    end
+
+    should 'require a start date if an end date is present' do
+      @ticket.end_date = Date.today()
+      @ticket.valid?
+      assert @ticket.errors[:end_date].any? == true
+      assert_equal @ticket.errors[:end_date].join(';'), "requires a start date"
+    end
+
+    should 'require an end date on or after start date' do
+      @ticket.start_date = Date.today
+      @ticket.end_date = Date.today - 1.day
+      @ticket.valid?
+      assert @ticket.errors[:end_date].any? == true
+      assert_equal @ticket.errors[:end_date].join(';'), "cannot be less than the start date"
+    end
+
+    should 'require a ticket_queue' do
+      @ticket.valid?
+      assert @ticket.errors[:ticket_queue].any? == true
+      @ticket.ticket_queue = ticket_queues(:one)
       @ticket.valid?
       assert @ticket.errors[:ticket_queue].any? == false
-      assert @ticket.errors.any? == true
+    end
+
+    should 'require a user' do
+      @ticket.user = nil
+      @ticket.valid?
+      assert @ticket.errors[:user].any? == true
+      @ticket.user = users(:one)
+      @ticket.valid?
+      assert @ticket.errors[:user].any? == false
+    end
+
+    should 'require a valid user' do
+      @ticket.valid?
+      assert @ticket.errors[:user].any? == true
+      @ticket.user = users(:one)
+      @ticket.valid?
+      assert @ticket.errors[:user].any? == false
+    end
+
+    should 'require a requestor' do
+      @ticket.requestor = nil
+      @ticket.valid?
+      assert @ticket.errors[:requestor_id].any? == true
+      @ticket.requestor = users(:one)
+      @ticket.valid?
+      assert @ticket.errors[:requestor_id].any? == false
+    end
+
+    should 'require a valid requestor' do
+      @ticket.valid?
+      assert @ticket.errors[:requestor].any? == true
+      @ticket.requestor = users(:one)
+      @ticket.valid?
+      assert @ticket.errors[:requestor].any? == false
     end
 
   end # a new ticket
