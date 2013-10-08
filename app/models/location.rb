@@ -19,7 +19,7 @@
 class Location < ActiveRecord::Base
 
   validates :company, format: {with: /\A(?:[A-Z]{1,3}[a-z]*)(?: {1}[A-Z][a-z]+)*\z/}
-  validates :zip, format: {with: /\A\d{5}$|^\d{5}-\d{4}\z/}
+  validates :zip, format: {with: /(?:\A\d{5}\z)|(?:\A\d{5}-\d{4}\z)/}
   validate :company_requires_address
   validate :address2_requires_address1
 

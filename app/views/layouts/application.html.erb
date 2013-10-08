@@ -7,62 +7,84 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<div id="header_container">
-  <div id="header">
-        Header Content
-    <div id="globalMenu-container">
-      <div id="globalMenu">
+    <div id="container">
+      <header>
+        <b>riTrack</b>
+      </header>
+  <nav>
+    <ul>
+      <li color="#ffffff"><a href="/">Home</a></li>
+      <li><a href="/about">About Us</a>
         <ul>
-          <li><a href="#" class="top_parent">Item 1</a>
-            <ul>
-              <li><a href="#">Sub 1:1</a></li>
-              <li><a href="#" class="parent">Sub 1:2</a>
-                <ul>
-                  <li><a href="#">Sub 1:2:1</a></li>
-                  <li><a href="#">Sub 1:2:2</a></li>
-                  <li><a href="#">Sub 1:2:3</a></li>
-                  <li><a href="#">Sub 1:2:4</a></li>
-                </ul>
-              </li>
-              <li><a href="#">Sub 1:3</a></li>
-              <li><a href="#" class="parent">Sub 1:4</a>
-                <ul>
-                  <li><a href="#">Sub 1:4:1</a></li>
-                  <li><a href="#">Sub 1:4:2</a></li>
-                  <li><a href="#">Sub 1:4:3</a></li>
-                  <li><a href="#">Sub 1:4:4</a></li>
-                </ul>
-              </li>
-              <li><a href="#" class="parent">Sub 1:5</a>
-                <ul>
-                  <li><a href="#">Sub 1:5:1</a></li>
-                  <li><a href="#">Sub 1:5:2</a></li>
-                  <li><a href="#">Sub 1:5:3</a></li>
-                  <li><a href="#">Sub 1:5:</a></li>
-                  <li><a href="#">Sub 1:5:5</a></li>
-                </ul>
-              </li>
-            </ul>
-          </li>
+        <li><a href="/crew">Our Crew</a></li>
+        <li><a href="/history">Plumbing History</a></li>
+        <li><a href="/vision">Plumbing Vision</a></li>
         </ul>
-      <ul>
-        <li><a href="#" >Item 2</a></li>
-      </ul>
-      </div>  <!-- end of the globalMenu -->
-    </div>  <!-- end of the globalMenu-container -->
-  </div> <!-- end of the header -->
-</div> <!-- end of the header-container -->
-<br />
-<div id="container">
-    <div id="content">
-      <%= yield %>
-    </div>
-</div>
-<div id="footer-container">
-  <div id="footer">
-      Footer Content
-  </div>
-</div>
+      </li>
+      <li><a href="/products">Products</a>
+        <ul>
+        <li><a href="/pipes">Pipes</a></li>
+        <li><a href="/wrenches">Wrenches</a></li>
+        <li><a href="/solder">Soldering Tools</a></li>
+        <li><a href="/pbc">PVC Joints</a></li>
+        <li><a href="/sprockets">Other Joints</a></li>
+        </ul>
+      </li>
+      <li><a href="/services">Services</a>
+        <ul>
+        <li><a href="/visites">Site Visits</a></li>
+        <li><a href="/spot">Spot Welding</a></li>
+        <li><a href="/tig">TiG Welding</a></li>
+        <li><a href="/mig">MiG Welding</a></li>
+        <li><a href="/drain">Drain Service</a></li>
+        </ul>
+      </li>
+      <li><a href="/contact">Contact</a>
+        <ul>
+        <li><a href="/email">Via Email</a></li>
+        <li><a href="/contact_form">Web Form</a></li>
+        <li><a href="/pigeon">Carrier Pigeon</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
 
-</body>
+      <section id="main" role="main">
+        <article>
+          <div>
+            <%= yield %>
+          </div>
+        </article>
+      </section>
+
+      <aside>
+        <h2>Colors</h2>
+        <ul>
+          <li>Red</li>
+          <li>Green</li>
+          <li>Yellow</li>
+          <li>Blue</li>
+          <li>Brown</li>
+          <li>Black</li>
+          <li>White</li>
+        </ul>
+
+        <h2>Nations</h2>
+        <ul>
+          <li>United States</li>
+          <li>China</li>
+          <li>Portugal</li>
+          <li>Germany</li>
+          <li>Italy</li>
+          <li>France</li>
+          <li>Mexico</li>
+        </ul>
+      </aside>
+
+      <footer>
+        footer
+      </footer>
+    </div> <!--! end of #container -->
+  </body>
+
 </html>

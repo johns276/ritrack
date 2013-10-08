@@ -12,160 +12,136 @@
  *= require_tree .
  */
 
-#globalMenu-container {
-    /* position: absolute; */
-    top: 0.0em;
-    left: 0.0em;
-}
-
-#globalMenu {
-    font-size: medium;
-    font-family: arial, helvetica, sans-serif;
-    width:100%;
-    float:left;
-    /* clear:both; */
-    margin:0.1em;
-    margin-top: 0.3em;
-    border: 1px solid #000000;
-}
-
-#globalMenu a {
-    text-align: center;
-    display:block;
-    border: 1px solid #357A53;
-    white-space:nowrap;
-    margin:0;
-    padding: 0.3em;
-}
-
-/* un-selected */
-#globalMenu a:link, #globalMenu a:visited, #globalMenu a:active {
-    color: white;
-    background-color: #025928;      /* Dollar Green */
-    text-decoration:none;
-}
-
-/* on mouse-over  */
-#globalMenu a:hover {
-    color: black;
-    background-color: #3C8C30;  /* Lighter gray green */
-    border: 1px solid #357A53;
-    text-decoration:none;
-}
-
-/* add down-arrow to all top-parents */
-#globalMenu a.top_parent, #globalMenu a.top_parent:hover {
-    background-image: url(navdown_white.png);
-    background-position: right center;
-    background-repeat: no-repeat;
-}
-
-/* add side-arrow to all parents */
-#globalMenu a.parent, #globalMenu a.parent:hover {
-    background-image: url(nav_white.png);
-    background-position: right center;
-    background-repeat: no-repeat;
-}
-
-#globalMenu ul {
-    list-style:none;
-    margin:0;
-    padding:0;
-    float:left;
-    width:9em;  /* width of all menu boxes */
-    /* NOTE: For adjustable menu boxes you can comment out the above width rule.
-    However, you will have to add padding in the "#menh a" rule so that the menu boxes
-    will have space on either side of the text -- try it */
-}
-
-#globalMenu li {
-    position:relative;
-    min-height: 1px;
-    vertical-align: bottom;
-}
-
-#globalMenu ul ul {
-    position:absolute;
-    z-index:500;
-    top:auto;
-    display:none;
-    padding: 1em;
-    margin:-1em 0 0 -1em;
-}
-
-#globalMenu ul ul ul {
-    top:0;
-    left:100%;
-}
-
-div#globalMenu li:hover {
-    cursor:pointer;
-    z-index:100;
-}
-
-div#globalMenu li:hover ul ul,
-div#globalMenu li li:hover ul ul,
-div#globalMenu li li li:hover ul ul,
-div#globalMenu li li li li:hover ul ul
-{display:none;}
-
-div#globalMenu li:hover ul,
-div#globalMenu li li:hover ul,
-div#globalMenu li li li:hover ul,
-div#globalMenu li li li li:hover ul
-{display:block;}
-
-/* End CSS Drop Down Menu */
-
 /* Reset body padding and margins */
+{
+    margin: 0;
+    padding: 0;
+}
+
 body {
-  margin:0;
-  padding:0;
+  margin: 0;
+  padding: 0;
 }
 
-/* Make Header Sticky */
-#header_container {
-  background:#3C8C30;
-  border:1px solid #000000;
-  left:0;
-  position:fixed;
-  width:100%;
-  top:0;
+div#container {
+  width: 100%;
+  margin: auto;
+  margin-top: 5px;
 }
 
-#header{
-  line-height:1.5em;
-  margin:0 auto;
-  width:100%; /* 940px; */
-  text-align:left;
- }
-
-/* CSS for the content of page. */
-#container {
-  margin:5.0em auto;
-  overflow:auto;
-  /* top:20.0em; */
-  width:100%;
+section#main {
+  /*padding-left: 20px;*/
 }
 
-#content{
-  margin-left: 10px
+aside {
+  /*padding-right: 0px;*/
 }
 
-/* Make Footer Sticky */
-#footer_container {
-  background:#eee;
-  border:1px solid #666;
-  bottom:0;
-  height:60px;
-  left:0;
-  position:fixed;
-  width:100%;
-
+footer {
+  padding: 10px;
 }
-#footer {
-  line-height:60px;
-  margin:0 auto;
-  width:940px;
+
+header {
+  background-color: #025928;
+  margin-left: 5px;
+  height: 25px;
+}
+
+nav {
+  background-color: #025928;
+  height: 26px;
+  margin-left: 5px;
+}
+
+nav ul {
+  font-family: Arial, Verdana;
+  font-size: 15px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+nav ul li {
+  display: block;
+  position: relative;
+  float: left;
+  background-color: #025928;
+}
+
+nav li ul {
+  display: none;
+}
+
+nav ul li a {
+  display: block;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: bold;
+  padding-top: 5px;
+  background: #025928;
+  color: #ffffff;
+  margin-left: 1px;
+  white-space: nowrap;
+  height: 20px; /* Width and height of top-level nav items */
+  width: 120px;
   text-align:center;
+  border-bottom: 1px solid #025928;
+}
+
+nav ul li a:hover {
+  background: #3C8C30;
+  color: #ffffff;
+}
+
+nav li:hover ul {
+  display: block;
+  position: absolute;
+  height:30px;
+}
+
+nav li:hover li {
+  float: none;
+  font-size: 12px;
+}
+
+nav li:hover a {
+  background: #3C8C30;
+  height:20px; /* Height of lower-level nav items is shorter than main level */
+  color: #000000;
+  font-weight: normal;
+  width: 120px;
+}
+
+nav li:hover li a:hover {
+  background: #025928;
+  color: #ffffff;
+  font-weight: bold;
+  border-bottom: 1px;
+  border-bottom-color: #3C8C30;
+}
+
+nav ul li ul li a {
+    text-align: left; /* Top-level items are centered, but nested list items are left-aligned */
+    padding-left: 5px;
+}
+
+section#main {
+  background-color: #EBEBEB;
+  width: 1165px;
+  float: right;
+}
+
+aside {
+  background-color: #8CCAF0;
+  margin-left: 5px;
+  width: 180px;
+  padding-right: 1px;
+  float: left;
+}
+
+footer {
+  background-color: #993398;
+  height: 40px;
+  margin-left: 5px;
+  clear: both;
 }
