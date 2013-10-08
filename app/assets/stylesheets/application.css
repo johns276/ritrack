@@ -45,6 +45,7 @@ header {
   background-color: #025928;
   margin-left: 5px;
   height: 25px;
+  color: #000000;
 }
 
 nav {
@@ -90,6 +91,11 @@ nav ul li a {
 
 nav ul li a:hover {
   background: #3C8C30;
+  color: #ffffff;
+  font-size: 14px;
+}
+
+nav ul li a:visited {
   color: #ffffff;
 }
 
