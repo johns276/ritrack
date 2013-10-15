@@ -60,7 +60,7 @@ class User < ActiveRecord::Base
   validates_associated :tasks
 
   validates :password,
-        format: {with: /\A((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%_-]).{8,255})\z/},
+        format: {with: /\A((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%_-]).{8,255})\z/, message: 'must have 8 or more characters and must include at least one digit, one upper-case, and one special character.',},
         length: { minimum: 8, maximum: 255 }, if: :validate_password?
 
   validates :password_confirmation, presence: true, if: :validate_password?

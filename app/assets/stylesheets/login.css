@@ -1,0 +1,74 @@
+/* Reset body padding and margins */
+{
+    margin: 0;
+    padding: 0;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+div#container {
+  width: 100%;
+  margin: auto;
+  margin-top: 5px;
+}
+
+section#main {
+  padding-bottom: 20px;
+}
+
+header#hlogin {
+  background-color: #025928;
+  margin-left: 5px;
+  height: 25px;
+  color: #000000;
+}
+
+footer#flogin {
+  background-color: #7d4303;
+  height: 40px;
+  margin-left: 5px;
+  padding: 10px;
+  color: #000000;
+}
+
+.session_form {
+  margin-top: 25px;
+  margin-left: 20%;
+}
+
+fieldset {
+  background-color: #3C8C30;
+  width: 50%;
+  border: 2px solid #7d4303;
+}
+
+legend {
+  font-weight: bold;
+  padding: 0.2em 0.5em;
+  color: #ffffff;
+  background-color: #025928;
+  border: 1px solid #7d4303;
+}
+
+label {
+  font-weight: bold;
+  color: #000000;
+  float:left;
+  width:25%;
+  margin-right:0.5em;
+  padding-top:0.5em;
+  text-align:right;
+}
+
+input {
+  margin-top: 5px;
+}
+
+#button {
+  font-weight: bold;
+  margin-top: 20px;
+  border-radius: 4px;
+}

@@ -29,14 +29,6 @@ div#container {
   margin-top: 5px;
 }
 
-section#main {
-  /*padding-left: 20px;*/
-}
-
-aside {
-  /*padding-right: 0px;*/
-}
-
 footer {
   padding: 10px;
 }
@@ -132,7 +124,6 @@ nav ul li ul li a {
 }
 
 section#main {
-  background-color: #EBEBEB;
   width: 1165px;
   float: right;
 }
@@ -146,8 +137,9 @@ aside {
 }
 
 footer {
-  background-color: #993398;
+  background-color: #025928;
   height: 40px;
   margin-left: 5px;
   clear: both;
+  color: #000000;
 }

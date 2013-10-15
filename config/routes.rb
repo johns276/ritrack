@@ -1,5 +1,17 @@
 Ritrack::Application.routes.draw do
+
+  controller :sessions do
+    get 'login' => :new
+    post 'login' => :create
+    delete 'logout' => :destroy
+  end
+
+  get "sessions/new"
+  get "sessions/create"
+  get "sessions/destroy"
+
   # get "ritrack/index"
+
   resources :ticket_queues
 
   resources :users
@@ -8,7 +20,7 @@ Ritrack::Application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'ritrack#index'
+  root 'ritrack#index', as: 'ritrack'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ritrack</title>
+  <%= stylesheet_link_tag    "login", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+    <div id="container">
+      <header id="hlogin">
+        <b>riTrack</b>
+      </header>
+
+      <section id="main" role="main">
+        <article>
+          <div>
+            <%= yield %>
+          </div>
+        </article>
+      </section>
+
+      <footer id="flogin">
+
+      </footer>
+    </div> <!-- end of #container -->
+  </body>
+
+</html>

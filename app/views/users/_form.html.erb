@@ -41,11 +41,11 @@
   </div>
   <div class="field">
     <%= f.label :start_date %><br>
-    <%= f.date_select :start_date %>
+    <%= f.date_select :start_date, order: [:month, :day, :year] %>
   </div>
   <div class="field">
     <%= f.label :end_date %><br>
-    <%= f.date_select :end_date %>
+    <%= f.date_select :end_date, order: [:month, :day, :year], include_blank: true %>
   </div>
   <div class="actions">
     <%= f.submit %>
