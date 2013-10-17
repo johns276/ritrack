@@ -21,6 +21,7 @@
 body {
   margin: 0;
   padding: 0;
+  background-color: #fffdd0;
 }
 
 div#container {
@@ -29,19 +30,24 @@ div#container {
   margin-top: 5px;
 }
 
-footer {
-  padding: 10px;
+header {
+  background-color: #50a632;
+  margin-left: 5px;
+  height: 40px;
+  width: auto;
+  color: #195905;
 }
 
-header {
-  background-color: #025928;
-  margin-left: 5px;
-  height: 25px;
-  color: #000000;
+header div#logo {
+  font-weight: bold;
+  color: #195905;
+  padding-top: 0.75em;
+  padding-left: 1.0em;
+  font-size: 15px;
 }
 
 nav {
-  background-color: #025928;
+  background-color: #044a26;
   height: 26px;
   margin-left: 5px;
 }
@@ -58,7 +64,7 @@ nav ul li {
   display: block;
   position: relative;
   float: left;
-  background-color: #025928;
+  background-color: #044a26;
 }
 
 nav li ul {
@@ -71,24 +77,27 @@ nav ul li a {
   font-size: 15px;
   font-weight: bold;
   padding-top: 5px;
-  background: #025928;
-  color: #ffffff;
+  background: #044a26;
   margin-left: 1px;
   white-space: nowrap;
   height: 20px; /* Width and height of top-level nav items */
   width: 120px;
   text-align:center;
-  border-bottom: 1px solid #025928;
-}
-
-nav ul li a:hover {
-  background: #3C8C30;
-  color: #ffffff;
-  font-size: 14px;
+/*  border-bottom: 1px solid #044a26;
+  border-left-color: #30a469;*/
 }
 
 nav ul li a:visited {
   color: #ffffff;
+  font-weight: bold;
+}
+
+nav ul li a:hover {
+  /*background: #044a26;*/
+    background-color: #30a469;
+  /*color: #195905;*/
+  font-size: 14px;
+  font-weight: bold;
 }
 
 nav li:hover ul {
@@ -99,47 +108,60 @@ nav li:hover ul {
 
 nav li:hover li {
   float: none;
-  font-size: 12px;
+  font-size: 14px;
 }
 
 nav li:hover a {
-  background: #3C8C30;
+  background-color: #30a469;
   height:20px; /* Height of lower-level nav items is shorter than main level */
   color: #000000;
-  font-weight: normal;
+  font-weight: bold;
   width: 120px;
+  font-size: 14px;
 }
 
 nav li:hover li a:hover {
-  background: #025928;
+  background-color: #044a26;
+  /*background: #025928;*/
   color: #ffffff;
   font-weight: bold;
-  border-bottom: 1px;
-  border-bottom-color: #3C8C30;
+/*  border-bottom-color: #044a26;*/
+  border-bottom: 1px solid #044a26;
+  /*border-left: 1px solid #30a469;*/
 }
 
 nav ul li ul li a {
     text-align: left; /* Top-level items are centered, but nested list items are left-aligned */
     padding-left: 5px;
+      /*border-bottom: 1px solid #044a26;
+  border-left: 1px solid #30a469;*/
 }
 
 section#main {
-  width: 1165px;
-  float: right;
+  margin-left: 5px;
+  width: auto;
 }
 
-aside {
+/*aside {
   background-color: #8CCAF0;
   margin-left: 5px;
   width: 180px;
   padding-right: 1px;
   float: left;
-}
+}*/
 
 footer {
-  background-color: #025928;
+ clear: both;
+  padding: 10px;
+  background-color: #30a469;
   height: 40px;
   margin-left: 5px;
-  clear: both;
-  color: #000000;
+  color: #044a26;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #044a26;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-bottom-color: #044a26
 }
