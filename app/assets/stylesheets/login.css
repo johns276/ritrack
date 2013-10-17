@@ -7,6 +7,7 @@
 body {
   margin: 0;
   padding: 0;
+  background-color: #fffdd0;
 }
 
 div#container {
@@ -20,7 +21,7 @@ section#main {
 }
 
 header#hlogin {
-  background-color: #025928;
+  background-color: #50a632;
   margin-left: 5px;
   height: 40px;
   width: auto;
@@ -28,18 +29,23 @@ header#hlogin {
 
 div#logo {
   font-weight: bold;
-  color: #ffffff;
+  color: #195905;
   padding-top: 0.5em;
   padding-left: 1.0em
 }
 
 footer#flogin {
-  background-color: #7d4303;
+  background-color: #30a469;
   height: 40px;
   margin-left: 5px;
-  padding: 10px;
-  color: #000000;
+  color: #044a26;
   width: auto;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #044a26;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-bottom-color: #044a26
 }
 
 .session_form {
@@ -48,9 +54,9 @@ footer#flogin {
 }
 
 fieldset {
-  background-color: #3C8C30;
+  background-color: #50a632;
   width: 50%;
-  border: 2px solid #7d4303;
+  border: 1px solid #640613;
   border-radius: 5px;
   box-shadow: 10px 10px 5px rgba(8,8,8,0.6);
 }
@@ -58,16 +64,16 @@ fieldset {
 legend {
   font-weight: bold;
   padding: 0.2em 0.5em;
-  color: #ffffff;
-  background-color: #025928;
-  border: 1px solid #7d4303;
+  color: #195905;
+  background-color: #50a632;
+  border: 1px solid #640613;
   border-radius: 5px;
   box-shadow: 5px 5px 2px rgba(8,8,8,0.7);
 }
 
 label {
   font-weight: bold;
-  color: #000000;
+  color: #195905;
   float:left;
   width:25%;
   margin-right:0.5em;
@@ -83,4 +89,21 @@ input {
   font-weight: bold;
   margin-top: 20px;
   border-radius: 4px;
+  color: #195905;
+  background-color: #50a632;
+  border: 1px outset #0F3A02;
+  /*box-shadow: 2px 2px 2px rgba(8,8,8,0.9);*/
+}
+
+#button:hover{
+  background-color: #195905;
+  color: #50a632;
+  box-shadow: 2px 2px 2px rgba(8,8,8,0.7);
+}
+
+#button:active{
+  background-color: #50a632;
+  color: #195905;
+  border: 1px inset #0F3A02;
+  box-shadow: 2px 2px 2px rgba(8,8,8,0.7) inset;
 }
