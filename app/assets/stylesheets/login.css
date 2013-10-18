@@ -91,6 +91,12 @@ input {
   margin-top: 5px;
 }
 
+input:focus {
+  background-color: #C4589E;
+  color: #890059;
+  transition: background-color 1.0s ease-in;
+}
+
 #button {
   font-weight: bold;
   margin-top: 20px;
@@ -98,7 +104,7 @@ input {
   color: #733000;
   background-color: #d89261;
   border: 1px outset #733000;
-  /*box-shadow: 2px 2px 2px rgba(8,8,8,0.9);*/
+  transition: background-color 1.0s ease-in;
 }
 
 #button:hover{

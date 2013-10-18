@@ -35,7 +35,6 @@ header {
   margin-left: 5px;
   height: 40px;
   width: auto;
-  color: #195905;
 }
 
 header div#logo {
@@ -113,6 +112,7 @@ nav li:hover a {
   font-weight: bold;
   width: 120px;
   font-size: 14px;
+  transition: background-color 0.5s linear;
 }
 
 nav li:hover li a:hover {
@@ -124,6 +124,7 @@ nav li:hover li a:hover {
 nav ul li ul li a {
     text-align: left; /* Top-level items are centered, but nested list items are left-aligned */
     padding-left: 5px;
+    transition: background-color 0.5s linear;
 }
 
 section#main {
