@@ -31,7 +31,7 @@ div#container {
 }
 
 header {
-  background-color: #50a632;
+  background-color: #ab0010;
   margin-left: 5px;
   height: 40px;
   width: auto;
@@ -40,14 +40,14 @@ header {
 
 header div#logo {
   font-weight: bold;
-  color: #195905;
+  color: #d53545;
   padding-top: 0.75em;
   padding-left: 1.0em;
   font-size: 15px;
 }
 
 nav {
-  background-color: #044a26;
+  background-color: #d89261;
   height: 26px;
   margin-left: 5px;
 }
@@ -64,7 +64,6 @@ nav ul li {
   display: block;
   position: relative;
   float: left;
-  background-color: #044a26;
 }
 
 nav li ul {
@@ -77,25 +76,22 @@ nav ul li a {
   font-size: 15px;
   font-weight: bold;
   padding-top: 5px;
-  background: #044a26;
+  background: #d89261;
   margin-left: 1px;
   white-space: nowrap;
   height: 20px; /* Width and height of top-level nav items */
   width: 120px;
   text-align:center;
-/*  border-bottom: 1px solid #044a26;
-  border-left-color: #30a469;*/
 }
 
 nav ul li a:visited {
-  color: #ffffff;
+  color: #733000;
   font-weight: bold;
 }
 
 nav ul li a:hover {
-  /*background: #044a26;*/
-    background-color: #30a469;
-  /*color: #195905;*/
+  background-color: #733000;
+  color: #d89261;
   font-size: 14px;
   font-weight: bold;
 }
@@ -112,29 +108,22 @@ nav li:hover li {
 }
 
 nav li:hover a {
-  background-color: #30a469;
+  background-color: #d89261;
   height:20px; /* Height of lower-level nav items is shorter than main level */
-  color: #000000;
   font-weight: bold;
   width: 120px;
   font-size: 14px;
 }
 
 nav li:hover li a:hover {
-  background-color: #044a26;
-  /*background: #025928;*/
-  color: #ffffff;
+  background-color: #733000;
+  color: #d89261;
   font-weight: bold;
-/*  border-bottom-color: #044a26;*/
-  border-bottom: 1px solid #044a26;
-  /*border-left: 1px solid #30a469;*/
 }
 
 nav ul li ul li a {
     text-align: left; /* Top-level items are centered, but nested list items are left-aligned */
     padding-left: 5px;
-      /*border-bottom: 1px solid #044a26;
-  border-left: 1px solid #30a469;*/
 }
 
 section#main {
@@ -153,15 +142,15 @@ section#main {
 footer {
  clear: both;
   padding: 10px;
-  background-color: #30a469;
+  background-color: #C4589E;
   height: 40px;
   margin-left: 5px;
-  color: #044a26;
+  color: #890059;
   width: auto;
   border-top-style: solid;
   border-top-width: 1px;
-  border-top-color: #044a26;
+  border-top-color: #890059;
   border-bottom-style: solid;
   border-bottom-width: 1px;
-  border-bottom-color: #044a26
+  border-bottom-color: #890059
 }

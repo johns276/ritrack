@@ -21,7 +21,7 @@ section#main {
 }
 
 header#hlogin {
-  background-color: #50a632;
+  background-color: #ab0010;
   margin-left: 5px;
   height: 40px;
   width: auto;
@@ -29,34 +29,40 @@ header#hlogin {
 
 div#logo {
   font-weight: bold;
-  color: #195905;
+  color: #d53545;
   padding-top: 0.5em;
   padding-left: 1.0em
 }
 
 footer#flogin {
-  background-color: #30a469;
+  position:fixed;
+  left: 0px;
+  bottom: 5px;
+  background-color: #C4589E;
   height: 40px;
   margin-left: 5px;
-  color: #044a26;
-  width: auto;
+  color: #890059;
+  width: 100%;
   border-top-style: solid;
   border-top-width: 1px;
-  border-top-color: #044a26;
+  border-top-color: #890059;
   border-bottom-style: solid;
   border-bottom-width: 1px;
-  border-bottom-color: #044a26
+  border-bottom-color: #890059;
+  border-left-style: solid;
+  border-left-width: 1px;
+  border-left-color: #890059;
 }
 
 .session_form {
-  margin-top: 25px;
-  margin-left: 20%;
+  margin-top: 10%;
+  margin-left: 30%;
 }
 
 fieldset {
-  background-color: #50a632;
+  background-color: #d89261;
   width: 50%;
-  border: 1px solid #640613;
+  border: 1px solid #733000;
   border-radius: 5px;
   box-shadow: 10px 10px 5px rgba(8,8,8,0.6);
 }
@@ -64,16 +70,16 @@ fieldset {
 legend {
   font-weight: bold;
   padding: 0.2em 0.5em;
-  color: #195905;
-  background-color: #50a632;
-  border: 1px solid #640613;
+  color: #733000;
+  background-color: #d89261;
+  border: 1px solid #733000;
   border-radius: 5px;
   box-shadow: 5px 5px 2px rgba(8,8,8,0.7);
 }
 
 label {
   font-weight: bold;
-  color: #195905;
+  color: #733000;
   float:left;
   width:25%;
   margin-right:0.5em;
@@ -89,21 +95,21 @@ input {
   font-weight: bold;
   margin-top: 20px;
   border-radius: 4px;
-  color: #195905;
-  background-color: #50a632;
-  border: 1px outset #0F3A02;
+  color: #733000;
+  background-color: #d89261;
+  border: 1px outset #733000;
   /*box-shadow: 2px 2px 2px rgba(8,8,8,0.9);*/
 }
 
 #button:hover{
-  background-color: #195905;
-  color: #50a632;
+  background-color: #733000;
+  color: #d89261;
   box-shadow: 2px 2px 2px rgba(8,8,8,0.7);
 }
 
 #button:active{
-  background-color: #50a632;
-  color: #195905;
+  background-color: #733000;
+  color: #d89261;
   border: 1px inset #0F3A02;
   box-shadow: 2px 2px 2px rgba(8,8,8,0.7) inset;
 }
