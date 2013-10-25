@@ -57,6 +57,7 @@ footer#flogin {
 .session_form {
   margin-top: 10%;
   margin-left: 30%;
+  color: #ff0000;
 }
 
 fieldset {
@@ -92,7 +93,7 @@ input {
 }
 
 input:focus {
-  background-color: #C4589E;
+  background-color: #fffda0;
   color: #890059;
   transition: background-color 1.0s ease-in;
 }
@@ -104,7 +105,7 @@ input:focus {
   color: #733000;
   background-color: #d89261;
   border: 1px outset #733000;
-  transition: background-color 1.0s ease-in;
+  transition: background-color 0.5s ease-in;
 }
 
 #button:hover{

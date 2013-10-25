@@ -65,6 +65,8 @@ class User < ActiveRecord::Base
 
   validates :password_confirmation, presence: true, if: :validate_password?
 
+  scope :active, -> { where(end_date: nil) }
+
   private
 
   def no_end_date_without_start_date
